@@ -1,0 +1,30 @@
+# The sequence of non-negative integers
+A = [1, 2, 3, 4]
+
+# The number of terms to sum
+K = 2
+
+# The divisor to find the greatest multiple of
+D = 2
+
+# The greatest multiple of D found so far
+greatest_multiple = -1
+
+# Generate all the possible sums of K terms in A
+sums = []
+for i in range(len(A)):
+  # Calculate the sum of K terms starting at the current index
+  sum = 0
+  for j in range(K):
+    sum += A[i+j]
+  # Add the sum to the list of sums
+  sums.append(sum)
+
+# Loop through the sums and find the greatest multiple of D
+for sum in sums:
+  # If the sum is a multiple of D and is greater than the current greatest multiple, update it
+  if sum % D == 0 and sum > greatest_multiple:
+    greatest_multiple = sum
+
+# Print the greatest multiple of D
+print(greatest_multiple)
