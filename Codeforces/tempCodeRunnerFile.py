@@ -1,1 +1,1 @@
-                break
+    b=lmii()
