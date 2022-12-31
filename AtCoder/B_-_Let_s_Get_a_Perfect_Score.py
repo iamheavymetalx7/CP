@@ -26,43 +26,44 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-def solve(t):
-    n=ii()
-    arr=lmii()
+def solve():
+    N, M = map(int, input().split())
+    arr = []
+    all = int('1'*M, 2)
+    cnt = 0
 
-    ans=pow(10,6)
+    for _ in range(N):
+        string = ''
+        for s in input():
+            if s == 'o':
+                string += '1'
+            else:
+                string += '0'
+        arr.append(int(string, 2))
+    for i in range(N):
+        for j in range(i+1, N):
+            if arr[i] | arr[j] == all:
+                cnt += 1
 
-    if sum(arr)%2==0:
-        return 0
+    print(cnt)
 
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
+
+
     
-
     
 def main():
-    t = 1
-    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Atcoder/input.txt"):
+        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Atcoder/input.txt", 'r')
+        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Atcoder/output.txt", 'w')
         start_time = time.time()
         print("--- %s seconds ---" % (time.time() - start_time))
  
  
     sys.setrecursionlimit(10**5)
  
-    t = int(input())
  
-    for i in range(t):
-        z= solve(i+1)
-        print(z)
+    solve()
+ 
  
 if __name__ == '__main__':
     main()

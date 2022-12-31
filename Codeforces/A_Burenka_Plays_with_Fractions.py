@@ -27,25 +27,15 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve(t):
-    n=ii()
-    arr=lmii()
+    a,b,c,d=mii()
+    x,y=a*d,b*c         
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
-    
-
+    if x==y:
+        print(0)
+    elif (x!=0 and y%x ==0) or (y!=0 and x%y==0):
+        print(1)
+    else:
+        print(2)
     
 def main():
     t = 1
@@ -61,8 +51,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

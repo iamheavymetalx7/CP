@@ -12,7 +12,18 @@ import heapq
 # # # # # # # # # # # # # # # #
 #       JAI SHREE RAM         #
 # # # # # # # # # # # # # # # #
- 
+
+'''
+
+Obviously, answer does not exceed 𝑚𝑎𝑥1+𝑚𝑎𝑥2−𝑚𝑖𝑛1−𝑚𝑖𝑛2, 
+where 𝑚𝑎𝑥1,𝑚𝑎𝑥2 are two maximum values in the array, and 
+𝑚𝑖𝑛1,𝑚𝑖𝑛2 are two minimum values. Let's find a segment, 
+such as this is true. For that we will look at all positions 
+containing 𝑚𝑎𝑥1 or 𝑚𝑎𝑥2 (𝑆1) and all positions containing 
+𝑚𝑖𝑛1 or 𝑚𝑖𝑛2 (𝑆2). After that we choose a pair 𝑙∈𝑆1, 𝑟∈𝑆2, 
+such as 𝑎𝑏𝑠(𝑟−𝑙) is minimum possible. Complexity: 𝑂(𝑛log𝑛)
+
+'''
  
 def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
@@ -30,22 +41,11 @@ def solve(t):
     n=ii()
     arr=lmii()
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
+    arr.sort()
     
+    print(arr[-1] + arr[-2] - arr[0] - arr[1])
 
+    
     
 def main():
     t = 1
@@ -61,8 +61,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

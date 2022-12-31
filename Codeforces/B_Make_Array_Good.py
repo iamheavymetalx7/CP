@@ -8,7 +8,7 @@ from string import ascii_lowercase
 from functools import cmp_to_key
 import heapq
  
- 
+## 1 based indexing!! 
 # # # # # # # # # # # # # # # #
 #       JAI SHREE RAM         #
 # # # # # # # # # # # # # # # #
@@ -30,23 +30,23 @@ def solve(t):
     n=ii()
     nums=lmii()
 
-    maxi=max(nums)
-    cnt=0
+    arr=[]
+    ans=[]
     for i in range(n):
-        if nums[i]==maxi:
-            continue
-        cnt+=1
-    print(cnt)
-    for i in range(n):
-        if nums[i]==maxi:
-            continue
-        to_add = maxi-nums[i]
-        while to_add>nums[i]:
-            print(i+1,nums[i])
-            to_add-=nums[i]
-        if to_add!=0:
-            print(i+1,to_add)
+        arr.append([nums[i],i])
     
+    arr.sort()
+
+
+    for i in range(1,n):
+        if arr[i][0]%arr[i-1][0]!=0:
+            x = (int(arr[i][0]//arr[i-1][0])+1)*(arr[i-1][0]) - arr[i][0]
+            ans.append([arr[i][1]+1,x])
+            arr[i][0]+=x
+    
+    print(len(ans))
+    for i in range(len(ans)):
+        print(*ans[i])
     
 def main():
     t = 1

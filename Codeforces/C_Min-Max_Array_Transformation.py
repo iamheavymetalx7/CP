@@ -28,23 +28,30 @@ c2i = lambda c: ord(c) - ord('a')
     
 def solve(t):
     n=ii()
-    arr=lmii()
+    a=lmii()
+    b=lmii()
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
+    j=0
     for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
-    
+        while b[j]<a[i]:
+            j+=1
+        print(b[j]-a[i],end=" ")
+    print()
+        
+    j=n-1
+
+    d_max=[0]*n
+    d_max[n-1] = b[n-1]-a[n-1]
+
+    for i in range(n-2,-1,-1):
+        if a[i+1]<=b[i]:
+            d_max[i]=b[j]-a[i]
+        else:
+            j=i
+            d_max[i]=b[i]-a[i]
+
+    print(*d_max)
+
 
     
 def main():
@@ -61,8 +68,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

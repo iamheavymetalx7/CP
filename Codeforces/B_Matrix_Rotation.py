@@ -27,26 +27,24 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve(t):
-    n=ii()
-    arr=lmii()
+    a,b=mii()
+    c,d=mii()
+    matrix =[[a,b],[c,d]]
+    flag=1
+    for i in range(4):
+        if (matrix[0][0]<matrix[1][0] and matrix[0][0]<matrix[0][1] and matrix[0][1]>matrix[0][0] and matrix[0][1]<matrix[1][1] and matrix[1][0]<matrix[1][1]):
+            flag=0
+            break
+        zerozro=matrix[0][0]
+        matrix[0][0]=matrix[1][0]    
+        matrix[1][0]    = matrix[1][1]
+        matrix[1][1] = matrix[0][1]
+        matrix[0][1] = zerozro
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
-    
-
-    
+    if flag==0:
+        print("YES")
+    else:
+        print("NO")
 def main():
     t = 1
     if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
@@ -61,8 +59,7 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
  
 if __name__ == '__main__':
     main()

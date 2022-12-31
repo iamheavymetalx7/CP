@@ -24,29 +24,17 @@ mii = lambda: map(int, input().split())
 lmii = lambda: list(map(int, input().split()))
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
-    
-    
+
+
 def solve(t):
-    n=ii()
-    arr=lmii()
-
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
-    
-
-    
+    n,m,sx,sy,d=mii()
+   
+    if sx-d>1 and sy+d<m:
+        print(n+m-2)
+    elif sx+d< n and sy-d>1:
+        print(n+m-2)
+    else:
+        print(-1)    
 def main():
     t = 1
     if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
@@ -61,8 +49,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

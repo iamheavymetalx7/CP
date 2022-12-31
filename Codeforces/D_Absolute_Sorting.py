@@ -12,7 +12,10 @@ import heapq
 # # # # # # # # # # # # # # # #
 #       JAI SHREE RAM         #
 # # # # # # # # # # # # # # # #
- 
+
+
+#Modified Binary Search
+# CodeForces Assemble
  
 def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
@@ -24,28 +27,44 @@ mii = lambda: map(int, input().split())
 lmii = lambda: list(map(int, input().split()))
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
+
+def BinarySearch(low,high,arr,n):
+    global x
+    flag=0
+    if low<=high:
+        
+        mid= (low+high)//2
+
+        for i in range(n-1):
+            if (abs(arr[i]-mid)>abs(arr[i+1]-mid)):
+                if arr[i]>arr[i+1]:
+                    flag=1
+                else:
+                    flag=2
+        if flag==1:
+            BinarySearch(mid+1,high,arr,n)
+        elif flag==2:
+            BinarySearch(low,mid-1,arr,n)
+        else:
+            x=mid
+
     
     
 def solve(t):
     n=ii()
-    arr=lmii()
+    a=lmii()
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
+    global x
+    x=-1
     
+    low=0
+    high = 1000000000
 
+    BinarySearch(low,high,a,n)
+
+    print(x)
+
+    
     
 def main():
     t = 1
@@ -61,8 +80,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

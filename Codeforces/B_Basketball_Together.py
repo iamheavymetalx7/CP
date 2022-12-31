@@ -26,26 +26,24 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-def solve(t):
-    n=ii()
-    arr=lmii()
-
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
+def solve():
+    N,D = mii()
+    A =lmii()
+    A.sort()
     
+    c=0
+    a=0
 
+    while A and a<=N:
+        a+= D//A[-1]+1
+        A.pop(-1)
+
+        if a<=N:
+            c+=1
+    print(c)
+
+       
+    
     
 def main():
     t = 1
@@ -58,11 +56,9 @@ def main():
  
     sys.setrecursionlimit(10**5)
  
-    t = int(input())
  
-    for i in range(t):
-        z= solve(i+1)
-        print(z)
+    solve()
+ 
  
 if __name__ == '__main__':
     main()

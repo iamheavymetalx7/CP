@@ -1,9 +1,2 @@
---- 9.5367431640625e-07 seconds ---
-inf
-None
-0
-None
-inf
-None
-inf
-None
+--- 0.0 seconds ---
+YES

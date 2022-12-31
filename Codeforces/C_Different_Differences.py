@@ -27,24 +27,34 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve(t):
-    n=ii()
-    arr=lmii()
+    k,n=mii()
 
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
+    arr=[False]*n
+    j=1
+    a=1
+    to_ret=[]
+    to_ret.append(j)
+    arr[j-1]=True
+    length=1
     for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
+        while length<k and j<=n:
+            j+=a
+            a+=1
+            if j<=n:
+                length+=1
+                to_ret.append(j)
+                arr[j-1]=True
     
+    length = len(to_ret)
+
+    i=n-1
+    while length<k and i>0:
+            if arr[i]==False:
+                to_ret.append(i+1)
+                length+=1
+                arr[i]=True
+            i-=1
+    print(*sorted(to_ret))
 
     
 def main():
@@ -61,8 +71,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

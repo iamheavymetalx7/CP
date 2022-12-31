@@ -27,26 +27,38 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve(t):
-    n=ii()
+
+    # 𝑛 denotes the number of cells, 𝑚 denotes the 
+    # number of colors, and 𝑘 means that for every 𝑘 consecutive cells, 
+    # their colors have to be distinct.
+
+    n,m,k=mii()
     arr=lmii()
-
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
-    for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
     
+    if n%k==0:
+        max_freq = n//k
+        max_elt = k
+    else:
+        max_freq = n//k +1
+        max_elt = n%k
 
-    
+    # print(max_freq, max_elt)
+
+    for i in range(m):
+        if arr[i]>max_freq:
+            max_elt =-1
+            break
+        if arr[i]==max_freq:
+            max_elt-=1
+
+    if max_elt<0:
+        print("NO")
+    else:
+        print("YES")    
+
+
+
+
 def main():
     t = 1
     if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
@@ -61,8 +73,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()

@@ -28,24 +28,24 @@ c2i = lambda c: ord(c) - ord('a')
     
 def solve(t):
     n=ii()
-    arr=lmii()
-
-    ans=pow(10,6)
-
-    if sum(arr)%2==0:
-        return 0
-
+    A=lmii()
+    B=lmii()
+    flag=0
     for i in range(n):
-        j=arr[i]
-        ops=0
-        while arr[i]%2 == j%2:
-            ops+=1
-            j=j//2
-        ans=min(ops,ans)
-    return ans
-            
-    
-
+        if A[i] > B[i]:
+            flag =1 
+            break
+        else:
+            if A[i]<B[i]:
+                if B[i] <= B[(i+1)%n]+1:
+                    continue
+                else:
+                    flag=1
+                    break
+    if flag==1:
+        print("NO")
+    else:
+        print("YES")
     
 def main():
     t = 1
@@ -61,8 +61,8 @@ def main():
     t = int(input())
  
     for i in range(t):
-        z= solve(i+1)
-        print(z)
+        solve(i+1)
+ 
  
 if __name__ == '__main__':
     main()
