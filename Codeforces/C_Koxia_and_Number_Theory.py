@@ -19,7 +19,12 @@ from bisect import *
 from string import ascii_lowercase
 from functools import cmp_to_key
 import heapq
- 
+
+
+# # concepts used:
+# 1. Number theory
+# 2. Pigeon hole principle
+
  
 # # # # # # # # # # # # # # # #
 #       JAI SHREE RAM         #
@@ -41,44 +46,33 @@ c2i = lambda c: ord(c) - ord('a')
 def solve(t):
     n=ii()
     a=lmii()
-    dic1={}
-    dic2={}
-    for i in range(n):
-        if a[i]%2:
-            dic1[1]=1+dic1.get(1,0)
-        else:
-            dic1[0]=1+dic1.get(0,0)
+    a_set=set(a)
+
+    if len(a_set)<n:
+        return "NO"
+
+    # now we check if any number % (2,n+1) is present 2 times or more
+
+    for j in range(2,51):
+        count =[0]*j
+        for i in range(n):
+            count[a[i]%j]+=1
+        
+        if min(count)>=2:
+            return "NO"
     
-    if dic1.get(0,0)>=2 and dic1.get(1,0)>=2:
-        print("NO")
-        return
-    
-    for i in range(n):
-        if a[i] in dic2:
-            print("NO")
-            return
-        dic2[a[i]] = 1+dic2.get(a[i],0)
-    
-    print("YES")
-            
-    
-    
+    return "YES"
+
 def main():
     t = 1
-    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-        start_time = time.time()
-        print("--- %s seconds ---" % (time.time() - start_time))
- 
- 
+
     sys.setrecursionlimit(10**5)
  
     t = int(input())
  
     for i in range(t):
-        solve(i+1)
- 
+        z=solve(i+1)
+        print(z)
  
 if __name__ == '__main__':
     main()
