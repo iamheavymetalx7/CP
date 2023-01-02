@@ -39,39 +39,32 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve():
-    n,a=mii()
+    n=ii()
     arr=lmii()
-    ans=0
-    if arr[a-1]==1:
-        ans+=1
-    i,j=a-2,a
-    while i>=0 and j<n:
-        if arr[i]==arr[j]:
-            ans+=2*arr[i]
-        i-=1
-        j+=1
+    # print(arr)
+    energy,sol=0,0
+    prev=0
+    for i in range(0,n):
 
-    while i>=0:
-        if arr[i]==1:
-            ans+=1
-        i-=1
-    while j<n:
-        if arr[j]==1:
-            ans+=1
-        j+=1
+        energy+=prev-arr[i]
 
-    print(ans)
-
-
+        if energy<0:
+            sol+=-energy
+            energy=0
+        prev=arr[i]
     
+    print(sol)
 
 
-
-
-    
     
 def main():
-
+    t = 1
+    # if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
+    #     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    #     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+    #     start_time = time.time()
+    #     print("--- %s seconds ---" % (time.time() - start_time))
+ 
  
     solve()
  

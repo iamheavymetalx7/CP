@@ -25,7 +25,8 @@ import heapq
 #       JAI SHREE RAM         #
 # # # # # # # # # # # # # # # #
  
- 
+# codeforces assemble
+# implementations
 def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
  
@@ -37,44 +38,42 @@ lmii = lambda: list(map(int, input().split()))
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
+def get_steps(p,q,r):
+    if r==0:
+        return math.inf
+    elif r<0:
+        return abs((q-1)//(-r))
+    else:
+        return (p-q)//r
     
 def solve():
-    n,a=mii()
-    arr=lmii()
-    ans=0
-    if arr[a-1]==1:
-        ans+=1
-    i,j=a-2,a
-    while i>=0 and j<n:
-        if arr[i]==arr[j]:
-            ans+=2*arr[i]
-        i-=1
-        j+=1
+    n,m=mii()
 
-    while i>=0:
-        if arr[i]==1:
-            ans+=1
-        i-=1
-    while j<n:
-        if arr[j]==1:
-            ans+=1
-        j+=1
+    # 1<=x<=n, 1<=y<=m 
+    x,y=mii()
+
+    k=ii()
+    ans=0
+    for _ in range(k):
+        dx,dy=mii()
+
+        steps = min(get_steps(n,x,dx),get_steps(m,y,dy))
+        x+=dx*steps
+        y+=dy*steps
+    
+        ans+=steps
 
     print(ans)
-
-
-    
-
-
-
-
-    
     
 def main():
+    t = 1
+    # if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
+    #     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    #     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+    #     start_time = time.time()
+    #     print("--- %s seconds ---" % (time.time() - start_time))
 
- 
     solve()
- 
  
 if __name__ == '__main__':
     main()

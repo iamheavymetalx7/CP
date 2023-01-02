@@ -44,7 +44,7 @@ def solve(t):
         print(n-i,i+1,end=" ")
     if n%2:
         print(n//2+1)
-    else:
+    else: 
         print()
     
     

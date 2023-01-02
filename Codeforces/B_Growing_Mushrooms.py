@@ -39,42 +39,31 @@ c2i = lambda c: ord(c) - ord('a')
     
     
 def solve():
-    n,a=mii()
-    arr=lmii()
-    ans=0
-    if arr[a-1]==1:
-        ans+=1
-    i,j=a-2,a
-    while i>=0 and j<n:
-        if arr[i]==arr[j]:
-            ans+=2*arr[i]
-        i-=1
-        j+=1
-
-    while i>=0:
-        if arr[i]==1:
-            ans+=1
-        i-=1
-    while j<n:
-        if arr[j]==1:
-            ans+=1
-        j+=1
-
-    print(ans)
-
-
+    n,t1,t2,k=lmii()
+    u,v=[],[]
+    for i in range(n):
+        a,b=mii()
+        u.append(a)
+        v.append(b)
     
+    arr=[]
 
-
-
-
+    for i in range(n):
+        arr.append([-max(u[i]*t1*(100-k)/100+v[i]*t2, v[i]*t1*(100-k)/100+u[i]*t2),i])
     
+    arr.sort()
+    
+    for i in range(len(arr)):
+        print("%d %2.2f" % (arr[i][1]+1, -arr[i][0]))
     
 def main():
-
- 
+    t = 1
+    # if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
+    #     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    #     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+    #     start_time = time.time()
+    #     print("--- %s seconds ---" % (time.time() - start_time))
     solve()
- 
  
 if __name__ == '__main__':
     main()
