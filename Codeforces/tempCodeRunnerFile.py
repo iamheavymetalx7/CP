@@ -1,2 +1,1 @@
-
-    ans=0
+        # print(ind1,ind)
