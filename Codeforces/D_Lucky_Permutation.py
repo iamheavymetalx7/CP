@@ -70,7 +70,7 @@ def solve(t):
             vis[j]=1
             j=arr[j][0]
             cycle_size+=1
-            
+
         vect.sort()
         for j in range(len(vect)):
             if vect[j]==vect[j-1]+1:
@@ -81,6 +81,16 @@ def solve(t):
             ans+=cycle_size-1
     ########## same code till here
     ## then just added depending on the condition !!
+
+# min operations to sort is the key idea, then there is just observation.
+# Basically if no cycle contains two adjacent elements then we first sort then swap, leading to 
+# (no. of operations to sort) +1
+
+# But if we have a cycle which contains two adjacent elements, then the answer just becomes:
+# (no. of operations to sort) - 1
+
+# Which is basically done below
+
     if flag:
         return ans-1
     return ans+1
