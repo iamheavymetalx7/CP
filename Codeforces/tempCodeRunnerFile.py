@@ -1,1 +1,1 @@
-continue
+    print(q)
