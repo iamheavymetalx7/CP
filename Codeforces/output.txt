@@ -1,8 +1,9 @@
-1
-helzo
-2
-coresorces
-1
-eeeee
 0
-appall
+1
+0
+0
+3
+5
+12
+0
+30
