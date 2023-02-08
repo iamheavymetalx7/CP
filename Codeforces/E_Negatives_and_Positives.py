@@ -39,54 +39,58 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    
-from math import gcd
-for _ in range(ii()):
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+
+from heapq import heapify, heappop, heappush
+def solve(t):
     n=ii()
-    arr=lmii()
+    a=lmii()
 
-    prefix_sum=[0]*n
-    prefix_sum[0]=arr[0]
-    for i in range(1,n):
-        prefix_sum[i]=arr[i]+prefix_sum[i-1]
-        
-    summ=0
-    ans=0
-    for i in range(n-1):
-        summ+=arr[i]
-        other_val  = prefix_sum[-1]-summ
-        ans=max(ans, math.gcd(summ,other_val))
-    print(ans)
+    arr=[]
+
+    cnt=0;summ=0
+
+    for i in range(n):
+        summ+=abs(a[i])
+        arr.append(abs(a[i]))
+        if a[i]<0:
+            cnt+=1
+    
+    if cnt%2==0:
+        print(summ)
+    else:
+        arr.sort()
+        print(summ-2*arr[0])
     
 
 
-# def solve(t):
+            
     
     
-# def main():
-#     t = 1
-#     if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-#         sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#         sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-#         start_time = time.time()
-#         print("--- %s seconds ---" % (time.time() - start_time))
+def main():
+    t = 1
+    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
+        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+        start_time = time.time()
+        print("--- %s seconds ---" % (time.time() - start_time))
  
  
-#     sys.setrecursionlimit(10**5)
+    sys.setrecursionlimit(10**5)
  
-#     t = int(input())
+    t = int(input())
  
-#     for i in range(t):
-#         solve(i+1)
+    for i in range(t):
+        solve(i+1)
  
  
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
     
  
 

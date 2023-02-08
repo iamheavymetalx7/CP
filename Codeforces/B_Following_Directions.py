@@ -39,52 +39,54 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
+    
+def solve(t):
+    x,y=0,0
+    n=ii()
+    s=si()
 
-for _ in range(ii()):
-    n,s,r = mii()
-    arr=[]
-    n-=1
-    arr.append(s-r)
-
-    while r!=0:
-        if r//n!=0:
-            arr.append(r//n)
-            r-=(r//n)
-            n-=1
-        
+    for i in range(n):
+        if s[i]=="U":
+            y+=1
+        elif s[i]=="D":
+            y-=1
+        elif s[i]=="R":
+            x+=1
         else:
-            if r!=0:
-                arr.append(r)
-    print(*arr)
+            x-=1
+        
+        if x==1 and y==1:
+            print("YES")
+            return
+    print("NO")
 
-# def solve(t):
     
     
-# def main():
-#     t = 1
-#     if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-#         sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#         sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-#         start_time = time.time()
-#         print("--- %s seconds ---" % (time.time() - start_time))
+def main():
+    t = 1
+    # if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
+    #     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    #     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
+    #     start_time = time.time()
+    #     print("--- %s seconds ---" % (time.time() - start_time))
  
  
-#     sys.setrecursionlimit(10**5)
+    sys.setrecursionlimit(10**5)
  
-#     t = int(input())
+    t = int(input())
  
-#     for i in range(t):
-#         solve(i+1)
+    for i in range(t):
+        solve(i+1)
  
  
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
     
  
 

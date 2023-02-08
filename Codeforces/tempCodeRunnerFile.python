@@ -1,12 +1,6 @@
-from sys import stdin
-import sys
+wrd1="nitish"
+wrd2="ops"
+wrd3="abc"
 
-import math
-def cutRod(price, n):
-    val=[i+1 for i in range(n)]
-    dp=[[-1 for i in range(price + 1)] for j in range(n+1)]
-    
-    return dp
-
-print(cutRod([2,5,7,8,10],5))
-
+print(wrd1<wrd2)
+print(wrd1>wrd3)
