@@ -10,6 +10,11 @@
 #combinations(p,r) gives r-length tuples #combinations_with_replacement
 #every element can be repeated
         
+#Note direct assignment to check somethings doesnt work always
+#say there exists s (list) then ss=s and if we edit ss, it edits s as well
+#always try to use ss=s.copy() if u wish to make changes to ss and not reflect them in s.
+#For example: see **1379A - Acacius and String** for reference
+    
 import sys, threading, os, io 
 import math
 import time
@@ -31,59 +36,56 @@ def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
  
  
-si= lambda:str(input())
-ii = lambda: int(input())
-mii = lambda: map(int, input().split())
-lmii = lambda: list(map(int, input().split()))
+input = lambda: sys.stdin.readline().rstrip(
+)
+def lmii():
+    return list(map(int,input().split()))
+
+def ii():
+    return int(input())
+
+def si():
+    return str(input())
+def lmsi():
+    return list(map(str,input().split()))
+def mii():
+    return map(int,input().split())
+
+def msi():
+    return map(str,input().split())
+
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
-def solve(t):
-    dic=defaultdict(int)
+def solve():
+    x0,y0=0,0
+    x,y=mii()
+    x=abs(x)
+    y=abs(y)
 
-    n=ii()
-    a=lmii()
-    a.sort()
-    ans=0
-    for i in a:
-        dic[i]+=1
-        if dic[i-1]==0:
-            ans+=1
-        else:
-            dic[i-1]-=1
+    if abs(x-y)<=1:
+        print(x+y)
+        return
+
+    val=abs(x-y)
+
+    ans=abs(x)+abs(y)+ (val-1)
+
     print(ans)
 
-    # 1 1
 
 
-    
-def main():
-    t = 1
-    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-        start_time = time.time()
-        print("--- %s seconds ---" % (time.time() - start_time))
- 
- 
-    sys.setrecursionlimit(10**5)
- 
-    t = int(input())
- 
-    for i in range(t):
-        solve(i+1)
- 
- 
-if __name__ == '__main__':
-    main()
+t=ii()
+for _ in range(t):
+    solve()
     
  
 

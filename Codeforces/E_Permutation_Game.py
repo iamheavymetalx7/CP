@@ -58,31 +58,41 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
     n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
+    arr=lmii()
+    farr=[i+1 for i in range(n)]
+    sarr=[(i+1) for i in range(n-1,-1,-1)]
+
+    a=0;b=0;c=0
+
+    for i in range(n):
+        if arr[i]!=farr[i] and arr[i]!=sarr[i]:
+            c+=1
+            continue
+        else:
+            if arr[i]!=farr[i]:
+                a+=1
+            if arr[i]!=sarr[i]:
+                b+=1
+    if a+c<=b:
+        print("First")
+        return
+    if b+c<a:
+        print("Second")
         return
     else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
-        else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+        print("Tie")
+        return
+            
+
     
     
     

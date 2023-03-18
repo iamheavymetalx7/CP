@@ -58,35 +58,55 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
+    n=input()
+    a,b=mii()
+    if len(n)==1:
+        print("NO")
         return
+    
+    pref=[int(n[0])%a]
+
+    for i in range(1,len(n)):
+        pref.append((pref[-1]*10+int(n[i]))%a)
+
+    f=10
+    f%=b
+    suf = [int(n[-1])%b]*len(n)
+    for i in range(len(n)-2,-1,-1):
+        suf[i] = (int(n[i])*f+suf[i+1])%b
+        f*=10
+        f%=b
+    
+    flag=False
+
+    for i in range(len(n)-1):
+        if pref[i]==suf[i+1]==0 and n[i+1]!="0":
+            flag=True
+            break
+    
+    if flag:
+        print("YES")
+        print(n[:i+1])
+        print(n[i+1:])
     else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
-        else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+        print("NO")
+
+
+
+
+solve()
+
     
+ 
     
-    
-    
-t=ii()
-for _ in range(t):
-    solve()
+ 
+
+

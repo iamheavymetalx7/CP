@@ -58,35 +58,47 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
+    n,init=mii()
+    s=list(si())
+
+    if init>n//2:
+        init = n-init+1
+        s=s[::-1]
+    
+
+    # print(ord("a"),ord("z"))
+
+        
+    arr=[]
+    for i in range(n//2):
+        if s[i]!=s[-i-1]:
+            arr.append(i+1)
+    
+    if not arr:
+        print(0)
         return
-    else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
-        else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+ 
+    ans=0
+    a=max(0,init-arr[0])
+    b=max(0,arr[-1]-init)
+    ans+=2*min(a,b)+max(a,b)
+
+    for ele in arr:
+        diff = abs(ord(s[ele-1])-ord(s[-ele]))
+        ans+=min(diff,26-diff)
     
+    print(ans)
     
+solve()
     
-    
-t=ii()
-for _ in range(t):
-    solve()
+
+
+

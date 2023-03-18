@@ -58,35 +58,46 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
-        return
-    else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
-        else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+    n,m=mii()
+    minOc,maxOc=0,0
+
+    for _ in range(n):
+        s=si()
+        on=s.count("1")
+
+        i,ct=1,0
+
+        while i<m:
+            if s[i]==s[i-1]=="1":
+                i+=1;ct+=1
+            i+=1
+        
+        d2=min(m//4,ct)
+        mn=on-d2
+        minOc+=mn
+
+        i,ct=1,0
+
+        while i<m:
+            if s[i]!=s[i-1] or s[i]==s[i-1]=="0":
+                i+=1;ct+=1
+            i+=1
+        
+        d2=min(m//4,ct)
+        mx=on-(m//4-d2)
+        maxOc+=mx
+    print(minOc,maxOc)
+        
+
+
     
     
-    
-    
-t=ii()
-for _ in range(t):
-    solve()
+solve()

@@ -58,35 +58,51 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-    
+from collections import Counter   
 def solve():
-    n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
+    s=si()
+    t=si()
+    cs = Counter(s)
+    ct= Counter(t)
+    if cs == ct:
+        print("array")
         return
-    else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
+
+    i=0;j=0
+    string=""
+    while i<len(s):
+        if s[i]==t[j]:
+            string+=s[i]
+            j+=1
+            if j==len(t):
+                break
+        i+=1
+
+    if string == t:
+        print("automaton")
+        return
+    flag=True
+    for k,v in ct.items():
+        if k not in cs:
+            flag=False
+            break
         else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+            if ct[k]>cs[k]:
+                flag=False
+    if flag:
+        print("both")
+        return
+    
+    print("need tree")
     
     
-    
-    
-t=ii()
-for _ in range(t):
-    solve()
+solve()
+ 
+
+

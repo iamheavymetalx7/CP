@@ -10,6 +10,11 @@
 #combinations(p,r) gives r-length tuples #combinations_with_replacement
 #every element can be repeated
         
+#Note direct assignment to check somethings doesnt work always
+#say there exists s (list) then ss=s and if we edit ss, it edits s as well
+#always try to use ss=s.copy() if u wish to make changes to ss and not reflect them in s.
+#For example: see **1379A - Acacius and String** for reference
+    
 import sys, threading, os, io 
 import math
 import time
@@ -31,10 +36,24 @@ def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
  
  
-si= lambda:str(input())
-ii = lambda: int(input())
-mii = lambda: map(int, input().split())
-lmii = lambda: list(map(int, input().split()))
+input = lambda: sys.stdin.readline().rstrip(
+)
+def lmii():
+    return list(map(int,input().split()))
+
+def ii():
+    return int(input())
+
+def si():
+    return str(input())
+def lmsi():
+    return list(map(str,input().split()))
+def mii():
+    return map(int,input().split())
+
+def msi():
+    return map(str,input().split())
+
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
@@ -44,47 +63,53 @@ if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codefor
     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
 else:
     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    
-    
-def solve(t):
-    dic=defaultdict(int)
+    # def solve():
+    # n,k,d,w=mii()
+    # a=lmii()
 
-    n=ii()
+from bisect import bisect_right 
+def solve():
+    n,k,d,w=mii()
     a=lmii()
-    a.sort()
-    ans=0
-    for i in a:
-        dic[i]+=1
-        if dic[i-1]==0:
-            ans+=1
-        else:
-            dic[i-1]-=1
-    print(ans)
+    # i=0
+    # ans=0
+    # while i<n:
+    #     print(a[i],i)
+    #     time=a[i]+w
+    #     new_time=time+d
+    #     ans+=1
+    #     c=k
+    #     while i<n and c and new_time>=a[i]:
+    #         c-=1
+    #         i+=1
+    # print(ans)
+    packs=0
+    i=0
+    cov=0
 
-    # 1 1
+    while i<n:
+        new_time=a[i]+w+d
+        print(a[i],i,new_time,"a[i]   i")
+        r = bisect_right(a,new_time)
+        print(r,"bisecct")
+        r=min(r,i+k)
+        packs+=1
+        print(packs , "packs")
+        i=r
+    print(packs)
+
+
+
+
+
 
 
     
-def main():
-    t = 1
-    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-        start_time = time.time()
-        print("--- %s seconds ---" % (time.time() - start_time))
- 
- 
-    sys.setrecursionlimit(10**5)
- 
-    t = int(input())
- 
-    for i in range(t):
-        solve(i+1)
- 
- 
-if __name__ == '__main__':
-    main()
-    
+
+t=ii()
+for _ in range(t):
+    solve()
+
  
 
 

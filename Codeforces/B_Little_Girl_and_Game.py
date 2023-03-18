@@ -10,6 +10,11 @@
 #combinations(p,r) gives r-length tuples #combinations_with_replacement
 #every element can be repeated
         
+#Note direct assignment to check somethings doesnt work always
+#say there exists s (list) then ss=s and if we edit ss, it edits s as well
+#always try to use ss=s.copy() if u wish to make changes to ss and not reflect them in s.
+#For example: see **1379A - Acacius and String** for reference
+    
 import sys, threading, os, io 
 import math
 import time
@@ -31,10 +36,23 @@ def lcm(a, b):
     return (a*b)//(math.gcd(a,b))
  
  
-si= lambda:str(input())
-ii = lambda: int(input())
-mii = lambda: map(int, input().split())
-lmii = lambda: list(map(int, input().split()))
+input = lambda: sys.stdin.readline().rstrip()
+def lmii():
+    return list(map(int,input().split()))
+
+def ii():
+    return int(input())
+
+def si():
+    return str(input())
+def lmsi():
+    return list(map(str,input().split()))
+def mii():
+    return map(int,input().split())
+
+def msi():
+    return map(str,input().split())
+
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
@@ -44,47 +62,48 @@ if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codefor
     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
 else:
     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+from collections import Counter 
+
+"""
+The key thing to notice in this task is, 
+if we can arrange the characters of 
+the string we have into a palindrome,
+then there can be at most one character
+with an odd amount of occurences. 
+This easily gives us the answer: 
+if there are <= 1 characters with an 
+odd amount of occurences in the initial 
+string, then the winner is the first player.
+Otherwise, the answer is dependant on 
+whether the amount of characters with 
+odd amounts of occurences is even or odd; 
+if it's even then the second player wins, 
+otherwise the first player wins (since the 
+one who is forced to get this amount to one 
+first is going to lose).
+
+"""
+def solve():
+    s=si()
+    dic=Counter(s)
+    cnt_odd=0
+    for k,v in dic.items():
+        if dic[k]%2:
+            cnt_odd+=1
+    if cnt_odd<=1:
+        print("First")
+        return
+    if cnt_odd%2:
+        print("First")
+        return
+    else:
+        print("Second")
+        return
     
     
-def solve(t):
-    dic=defaultdict(int)
-
-    n=ii()
-    a=lmii()
-    a.sort()
-    ans=0
-    for i in a:
-        dic[i]+=1
-        if dic[i-1]==0:
-            ans+=1
-        else:
-            dic[i-1]-=1
-    print(ans)
-
-    # 1 1
-
-
     
-def main():
-    t = 1
-    if path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt"):
-        sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-        sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w')
-        start_time = time.time()
-        print("--- %s seconds ---" % (time.time() - start_time))
- 
- 
-    sys.setrecursionlimit(10**5)
- 
-    t = int(input())
- 
-    for i in range(t):
-        solve(i+1)
- 
- 
-if __name__ == '__main__':
-    main()
-    
- 
-
-
+solve()  
+# t=ii()
+# for _ in range(t):
+#     solve()

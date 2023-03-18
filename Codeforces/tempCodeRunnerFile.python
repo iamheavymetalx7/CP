@@ -1,6 +1,8 @@
-wrd1="nitish"
-wrd2="ops"
-wrd3="abc"
-
-print(wrd1<wrd2)
-print(wrd1>wrd3)
+print(bin(18)[2:])
+a="0b11111"
+b="0b1101"
+a=int(a,2)
+b=int(b,2)
+print(a,b)
+print(a^b)
+print((a+b)//2)

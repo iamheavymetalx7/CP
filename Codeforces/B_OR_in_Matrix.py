@@ -58,35 +58,57 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n=ii()
-    a=lmii()
-    if n==2:
-        ans=max(a[0]+a[1],2*abs(a[0]-a[1]))
-        print(ans)
-        return
+    n,m=mii()
+    arr=[]
+    for _ in range(n):
+        arr.append(lmii())
+    # print(arr)
+
+
+    new_mat=[[0]*m for _ in range(n)]
+    # print(new_mat)
+    
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j]==1:
+                # print(arr[i],"row",[1]*m)
+                # print( [row[j] for row in arr],"column",[1]*n)
+                if arr[i]==[1]*m or [row[j] for row in arr]==[1]*n:
+                    if arr[i]==[1]*m and [row[j] for row in arr]==[1]*n:
+                        new_mat[i][j]=1
+                    continue
+                else:
+                    print("NO")
+                    return
+                
+    f = 1 
+    for i in range(n):
+        for j in range(m):
+            c = 0
+            for k in range(m):
+                c = c | new_mat[i][k]
+            for k in range(n):
+                c = c | new_mat[k][j]
+            if(c != arr[i][j]):
+                f = 0 
+    if not f:
+        print("NO")
     else:
-        if n==3:
-            ans=max(3*a[0],3*a[2],3*abs(a[0]-a[1]),3*abs(a[2]-a[1]),sum(a))
-            print(ans)
-            return
-        else:
-            mx=-1
-            for i in range(n):
-                mx=max(mx,a[i])
-            print(n*mx)
-            return
+        print("YES")
+        for row in new_mat:
+            print(*row)                
+        
     
     
     
-    
-t=ii()
-for _ in range(t):
-    solve()
+# t=ii()
+# for _ in range(t):
+solve()
