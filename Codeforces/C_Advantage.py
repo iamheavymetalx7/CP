@@ -66,35 +66,26 @@ c2i = lambda c: ord(c) - ord('a')
     
 def solve():
     n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
+    a=lmii()
+    b=a.copy()
+    b.sort()
+
+    maxi=b[-1]
+    secmaxi=b[-2]
+
+    arr=[0]*n
     for i in range(n):
-
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
-    
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
-
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
-            
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
+        if a[i]==maxi:
+            arr[i]=maxi-secmaxi
+        else:
+            arr[i]=a[i]-maxi
     
     
-
-
-
+    print(*arr)
     
     
     
     
-solve()
+t=ii()
+for _ in range(t):
+    solve()

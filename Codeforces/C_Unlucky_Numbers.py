@@ -57,44 +57,90 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-# else:
-#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    
+if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+else:
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+def maxdig(n):
+    nn=str(n)
+
+    maxi= max(int(i) for i in nn)
+    return maxi
+
+def minidig(n):
+    nn=str(n)
+    mini=min(int(i) for i in nn)
+
+    return mini
+
     
 def solve():
-    n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
-    for i in range(n):
+    l,r=mii()
+    # print(l,r,"this...")
+    # print(max(l,r-100))
+    # if l==r:
+    #     print(r)
+    #     return
 
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
-    
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
+    # left2=l//10
+    # right2=r//10
 
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
-            
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
+    rstring=str(r)
+    lstring=str(l)
+    right=len(str(r))
+    left=len(str(l))
+
+    if right-left>1:
+        print("9"*(len(str(r))-1))
+        return
     
-    
+    if right==left:
+        if (r-l)>=10*(right-1):
+            print(lstring[0]*(left))
 
 
 
+    mini=10**18+3
+    ans=0
+    val = 2631578.94737
+    start=max(l,r-2631577)
+
+    for j in range(start,r+1):
+        if mini>abs(maxdig(j)-minidig(j)):
+
+            mini=maxdig(j)-minidig(j)
+            ans=j
+            if mini==0:
+                break
+    print(ans)
+                        
+
+
+        
+
+    # if right>left and (right-left)<10:
+    #     print(right*10)
+    #     return
+
+    # if right-left>=10:
+    #     # print("these two")
+    #     # print(len(str(l)),l)
+    #     # print(len(str(r)),r)
+
+    #     if len(str(l))==len(str(r)):
+    #         print(str(l[0])+"9"+"0"*(len(str(r))-2))
+    #         return
+    #     else:
+    #         print('9'+"0"*(len(str(r))-2))
+    #         return
+
     
     
     
     
-solve()
+    
+t=ii()
+for _ in range(t):
+    solve()

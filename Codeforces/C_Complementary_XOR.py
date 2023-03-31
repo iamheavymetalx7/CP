@@ -57,44 +57,97 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-# else:
-#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    
-    
+if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+else:
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+
 def solve():
+    # print("-"*15)
     n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
+    a=si()
+    b=si()
+    # print(a,b)
+    same=0
     for i in range(n):
+        if a[i]==b[i]:
+            same+=1
+    # print(same,"here")
+    if same!=0 and same!=n:
+        print("NO")
+        return
 
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
+
+    step=0
+    ans=[]
+    i=0
+    while i<n:
+        j=i
+
+        if a[i]=="1":
+            step+=1
+            while i<n and a[i]==a[j]:
+                # print(i,j,"inwhile")
+                i+=1
+            ans.append([j+1,i])
+        else:
+            i+=1
     
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
-
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
+    if (same==n and step%2==1) or (same==0 and step%2==0):
+        step+=3
+        ans.append([1,n])
+        ans.append([1,1])
+        ans.append([2,n])
+    print("YES")
+    print(step)
+    for ele in ans:
+        print(*ele)
             
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
     
     
+    
+t=ii()
+for _ in range(t):
+    solve()
 
 
 
+''''
+Second Solution: AyuAnchor
+
+import sys
+input = sys.stdin.readline
+ 
+for _ in range(int(input())):
+    n = int(input())
+    a = input()
+    b = input()
+    flag = 1
+    for i in range(n):
+        if a[i] == b[i]:
+            flag = 0
+            break
+    if a == b:
+        flag = 1
+    if not flag:
+        print('NO')
+        continue
     
-    
-    
-    
-solve()
+    print('YES')
+    ct = a.count('1')
+    if ((ct & 1 == 0 and a != b) or (ct & 1 and a == b)): print(ct+3)
+    else: print(ct)
+ 
+    for i in range(n):
+        if a[i] == '1':
+            print(i+1, i+1)
+    if ((ct & 1 == 0 and a != b) or (ct & 1 and a == b)):
+        print(1, 1)
+        print(2, n)
+        print(1, n)
+
+
+
+'''

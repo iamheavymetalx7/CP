@@ -1,25 +1,15 @@
-def rangeAddQueries(n,queries):
-    arr=[[0]*n for _ in range(n)]
-        
-    for r1,c1,r2,c2,val in queries:
-        arr[r1][c1]=val
-        if r2+1<n:
-            arr[r2+1][c1]=-1*val
-        if c2+1<n:
-            arr[r1][c2+1]=-1*val
-        
-        if c2+1< n and r2+1<n:
-            arr[r2+1][c2+1]=val
-        
-        print(arr,"inter")
-    for r in range(1,n):
-        for c in range(n):
-            arr[r][c]+=arr[r-1][c]
-    
-    for r in range(n):
-        for c in range(1,n):
-            arr[r][c]+=arr[r][c-1]
-    
-    return arr
-ans = rangeAddQueries(4,[[0,0,0,3,11],[0,3,3,3,5],[0,0,3,0,1]])
-print(ans)
+import math
+mx = 1000
+spf = [False,False]+[True for i in range(mx+1)]
+for i in range(2,int(math.sqrt(mx))+1):
+    if spf[i]==True:
+        for j in range(i*i,mx+1,i):
+            spf[j]=False
+
+p=[]
+
+for i in range(len(spf)):
+    if spf[i]:
+        p.append(i)
+
+print(p)

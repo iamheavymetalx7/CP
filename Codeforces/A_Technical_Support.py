@@ -63,38 +63,41 @@ c2i = lambda c: ord(c) - ord('a')
 # else:
 #     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-    
+from collections import Counter
 def solve():
-    n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
+    n=int(input())
+    ss=str(input())
+
+    ## QAAAAAQA
+    if ss[-1]=="Q":
+        print("No")
+        return
+
     for i in range(n):
+        if ss[i]=="Q":
+            dic=Counter(ss[i:])
 
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
-    
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
-
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
-            
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
-    
-    
+            if dic["Q"]>dic["A"]:
+                print("No")
+                return
+    print("Yes")
 
 
+
+
+
+
+    # sc=Counter(ss)
+
+    # if sc["Q"]<=sc["A"] and ss[-1]!="Q":
+    #     print("Yes")
+    #     return
+    # print("No")
 
     
     
     
     
-solve()
+t=ii()
+for _ in range(t):
+    solve()

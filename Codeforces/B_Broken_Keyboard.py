@@ -66,35 +66,26 @@ c2i = lambda c: ord(c) - ord('a')
     
 def solve():
     n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
-    for i in range(n):
-
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
-    
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
-
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
-            
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
-    
-    
-
-
+    ss=si()
+    i=0
+    flag=False
+    while i<n:
+        # print(i)
+        if not flag:
+            i+=1
+            flag=True
+        elif flag:
+            if i+1>=n or ss[i]!=ss[i+1]:
+                print("NO")
+                return
+            i+=2
+            flag=False
+    print("YES")
 
     
     
     
     
-solve()
+t=ii()
+for _ in range(t):
+    solve()

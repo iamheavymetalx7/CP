@@ -62,39 +62,75 @@ c2i = lambda c: ord(c) - ord('a')
 #     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
 # else:
 #     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
-    
+
+def maxdig(n):
+    nn=str(n)
+
+    maxi= max(int(i) for i in nn)
+    return maxi
+
+def minidig(n):
+    nn=str(n)
+    mini=min(int(i) for i in nn)
+
+    return mini
+
     
 def solve():
-    n=ii()
-    arr=[]
-    brr=[]
-    dic=defaultdict(int)
-    for i in range(n):
+    l,r=mii()
+    # print(l,r,"this...")
+    # print(max(l,r-100))
+    # if l==r:
+    #     print(r)
+    #     return
 
-        a=lmii()
-        brr.append(a)
-        for ele in a[1:]:
-            arr.append(ele)
-    
-    arr.sort()
-    for i in range(len(arr)):
-        dic[arr[i]]=i
-    splits=0
+    # left=l//10
+    # right=r//10
+    # if right==left:
+    #     print(r)
+    #     return
 
-    # print(brr)
-    for row in brr:
-        for i in range(2,len(row)):
-            
-            if dic[row[i-1]]+1!=dic[row[i]]:
-                splits+=1
-    print(splits,n+splits-1)
-    
-    
+    # if right-left<=1:
+    #     pass
+
+    maxii=-1
+    ans=0
+
+    start=max(l, r-100)
+    # print(start)
+
+    for j in range(start,r+1):
+        # print(j,maxdig(j),minidig(j))
+        if maxii<abs(maxdig(j)-minidig(j)):
+            maxii=maxdig(j)-minidig(j)
+            ans=j
+    print(ans)
+                        
 
 
+        
+
+    # if right>left and (right-left)<10:
+    #     print(right*10)
+    #     return
+
+    # if right-left>=10:
+    #     # print("these two")
+    #     # print(len(str(l)),l)
+    #     # print(len(str(r)),r)
+
+    #     if len(str(l))==len(str(r)):
+    #         print(str(l[0])+"9"+"0"*(len(str(r))-2))
+    #         return
+    #     else:
+    #         print('9'+"0"*(len(str(r))-2))
+    #         return
 
     
     
     
     
-solve()
+    
+t=ii()
+for _ in range(t):
+    solve()
