@@ -57,32 +57,86 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
     n=ii()
-    s=list(si())
-    j=0
-    seen=set()
-    ans=""
-    map=defaultdict(int)
-    for i in range(n):
-        
-        if s[i] not in map:
+    t=si()
+    a = 'abcdefghijklmnopqrstuvwxyz'
+    baap={}
+    beta={}
 
-            map[s[i]]=chr(j+97)
-            seen.add(j)
-            j+=1
-            ans+=map[s[i]]
-        else:
-            ans+=map[s[i]]
+    for i in range(n):
+        if t[i] in beta:
+            continue
+
+        j=0
+        ct=0
+        x=t[i]
+
+        while x in baap:
+            x=baap[x]
+            ct+=1
+
+        while a[j] in baap or a[j]==t[i] or (x==a[j] and ct!=25):
+            j=(j+1)%26
+
+        beta[t[i]] = a[j]
+        baap[a[j]] = t[i]
+    # print(baap)
+    # print(beta)
+    for i in t:
+        print(beta[i],end="")
+    print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # j=0
+    # seen=set()
+    # ans=""
+    # map=defaultdict(int)
+    # for i in range(n):
+        
+    #     if s[i] not in map:
+
+    #         map[s[i]]=chr(j+97)
+    #         seen.add(j)
+    #         j+=1
+    #         ans+=map[s[i]]
+    #     else:
+    #         ans+=map[s[i]]
     
-    print(ans)
+    # print(ans)
 
     
     

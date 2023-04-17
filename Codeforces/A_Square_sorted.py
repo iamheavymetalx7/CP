@@ -57,45 +57,44 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
+    
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+    n=ii()
+    a=lmii()
+    cnt = defaultdict(list)
+    # print(n,a)
+    if a==[0]*n:
+        print("YES")
+        return
+    if a==[1]*n:
+        print("YES")
+        return
 
-
-
+    for i in range(len(a)):
+        cnt[a[i]].append(i)
+    
+    if 0 in cnt:
+        idx=cnt[0][-1]
+        for i in range(0,idx+1):
+            if a[i]>a[idx]:
+                print("NO")
+                return
 
     
-    
+    if 1 in cnt:
+        idx=cnt[1][-1]
+        for i in range(0,idx+1):
+            if a[i]>a[idx]:
+                print("NO")
+                return
+
+    print("YES")
     
     
 t=ii()

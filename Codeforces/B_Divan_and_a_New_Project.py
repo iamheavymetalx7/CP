@@ -63,35 +63,36 @@ if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codefor
 else:
     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
+from heapq import heappop, heappush, heapify   
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+    n=ii()
+    a=lmii()
+    ans=[0]*(n+1)
 
+    pq=[]
+    for i,v in enumerate(a):
+        heappush(pq,(-v,i))
+    
+    cnt=0
+    right=1
+    left=-1
+    while pq:
+        
+        ele,idx=heappop(pq)
+        if cnt%2==0:
+            ans[idx+1]=right
+            right+=1
+        else:
+            ans[idx+1]=left
+            left-=1
+        cnt+=1
+    to_ret=0
+    for i in range(1,n+1):
+        to_ret+=2*abs(ans[i]-ans[0])*a[i-1]
+    
+    print(to_ret)
 
+    print(*ans)
 
 
     

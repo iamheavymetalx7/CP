@@ -63,36 +63,29 @@ if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codefor
 else:
     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
+    
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+    n=ii()
+    a=lmii()
+    c=[0]*3
+    for i in range(n):
+        if a[i]%3==0:
+            c[0]+=1
+        elif a[i]%3==1:
+            c[1]+=1
+        else:
+            c[2]+=1
+    res=0
+    while (min(c)!=n//3):
+        for i in range(3):
+            if c[i]>n//3:
+                res+=1
+                c[i]-=1
+                c[(i+1)%3]+=1
+    print(res)
 
 
-
+    
 
     
     

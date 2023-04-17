@@ -57,41 +57,41 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+
+def minofnum(x):
+    xx=list(str(x)) 
+    return int(min(xx))
+def maxofnum(x):
+    xx=list(str(x)) 
+    return int(max(xx)) 
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+
+    a1,k=mii()
+    arr=[]
+    arr.append(a1)
+    if k==1:
+        print(arr[k-1])
+        return
+    
+    while True:
+        arr.append(arr[-1]+minofnum(arr[-1])*maxofnum(arr[-1]))
+        if minofnum(arr[-1])==0:
+            break
+
+    
+    if k<=len(arr):
+        print(arr[k-1])
+    else:
+        print(arr[-1])
 
 
+    
 
 
     

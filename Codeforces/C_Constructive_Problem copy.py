@@ -63,36 +63,61 @@ if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codefor
 else:
     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
+    
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+    n=ii()
+    a=lmii()
+    b=a.copy()
+    b.sort()
+    # print(a)
+    # print(b)
+    mex=0
+    for i in range(n):
+        if b[i]==mex:
+            mex+=1
+    # print(mex,"org mex")
+    newmex=mex+1
+    # print(newmex,"newmex")
+
+    if newmex not in a:
+        if n>mex:
+            print("YES")
+            return
+        else:
+            print("NO")
+            return
+
+
+    first_index=n-1
+    last_index=0
 
 
 
+    for i in range(n-1,-1,-1):
+        if a[i]==newmex:
+            first_index=i
+
+    for i in range(n):
+        if a[i]==newmex:
+            last_index=i
+    
+    print(first_index,las)
+    for i in range(first_index, last_index+1):
+        a[i]=mex
+    # print(a)
+
+    nmex=0
+
+    a.sort()
+    for i in range(n):
+        if a[i]==nmex:
+            nmex+=1
+    
+    if nmex==newmex:
+        print("Yes")
+        return
+    print("No")
+    
 
     
     

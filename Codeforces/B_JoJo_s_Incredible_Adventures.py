@@ -57,45 +57,55 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-else:
-    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+# else:
+#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
-def SieveOfEratosthenes(n):  
-    prime = [True for i in range(n+1)] 
-    p = 2
-    ans = []
-    while (p * p <= n): 
-        if (prime[p] == True): 
-            for i in range(p * p, n+1, p): 
-                prime[i] = False
-        p += 1
-    for p in range(2, n+1): 
-        if prime[p]: 
-            ans.append(p)
-    return ans 
-primes = SieveOfEratosthenes(10**6)
-
+    
 def solve():
-    d=ii()
-    # print(d)
-    a=[1]
-    ind=0
-    while len(a)<3:
-        for i in range(ind, len(primes)):
-            if primes[i]-a[-1]>=d:
-                a.append(primes[i])
-                ind=i
-                break
-    print(math.prod(a))
+    s=si()
+    n=len(s)
+
+    t=s[-1]+s[:-1]
 
 
+    if s=="0"*n:
+        print(0)
+        return
 
-
+    cnt=0
+    for i in range(n):
+        if s[i]==t[i] and t[i]=='1':
+            cnt+=1
     
     
+    if cnt==n:
+        print(cnt**2)
+
+    else:
+        max_ones=0
+        i=0
+        cnt=0
+        
+        f= True
+        while f:
+            if s[i%n]=="1":
+                cnt+=1
+            else:
+                max_ones=max(max_ones,cnt)
+                cnt=0
+            max_ones=max(max_ones,cnt)
+            i+=1
+            if i>=n and s[i%n]=="0":
+                f=False
+        print(((max_ones+1)**2)//4)
+
+        
+
+
+
     
     
 t=ii()
