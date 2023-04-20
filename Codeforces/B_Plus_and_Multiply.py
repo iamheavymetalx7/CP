@@ -1,10 +1,20 @@
-'''
-Obviously, for b>=0, you should delete the characters one by one so that k=n
-Now b<0 and you have to delete the string in the minimum number of operations. Let the string s
-consist of m blocks of zeros and ones, then math.floor(m/2)+1
-is the minimum number of operations for which the entire string can be deleted
-
-'''
+#bisect.bisect_left(a, x, lo=0, hi=len(a)) is the analog of std::lower_bound()
+#bisect.bisect_right(a, x, lo=0, hi=len(a)) is the analog of std::upper_bound()
+#from heapq import heappop,heappush,heapify #heappop(hq), heapify(list)
+#from collections import deque as dq #deque  e.g. myqueue=dq(list)
+#append/appendleft/appendright/pop/popleft
+#from bisect import bisect as bis #a=[1,3,4,6,7,8] #bis(a,5)-->3
+#import bisect #bisect.bisect_left(a,4)-->2 #bisect.bisect(a,4)-->3
+#import statistics as stat  # stat.median(a), mode, mean
+#from itertools import permutations(p,r)#combinations(p,r)
+#combinations(p,r) gives r-length tuples #combinations_with_replacement
+#every element can be repeated
+        
+#Note direct assignment to check somethings doesnt work always
+#say there exists s (list) then ss=s and if we edit ss, it edits s as well
+#always try to use ss=s.copy() if u wish to make changes to ss and not reflect them in s.
+#For example: see **1379A - Acacius and String** for reference
+    
 import sys, threading, os, io 
 import math
 import time
@@ -56,29 +66,26 @@ c2i = lambda c: ord(c) - ord('a')
     
 def solve():
     n,a,b=mii()
-    t=si()
-
-    if b>=0:
-        print(n*a+n*b)
-        return
-    
-    c=1
-    for i in range(1,n):
-        if t[i]!=t[i-1]:
-            c+=1
+    if a==1:
+        if (n-1)%b==0:
+            print("yes")
+            return
+        else:
+            print("no")
+            return
+    else:
+        t=1
+        flag=0
+        while t<=n:
+            if (n-t)%b==0:
+                flag=1
+                break
+            t*=a
         
-    m=c//2 +1
-
-    print(n*a+b*m)
-
-
-
-
-
-
-                
-
-
+        if flag==1:
+            print("YES")
+            return
+        print("NO")
 
     
     

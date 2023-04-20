@@ -1,10 +1,4 @@
-'''
-Obviously, for b>=0, you should delete the characters one by one so that k=n
-Now b<0 and you have to delete the string in the minimum number of operations. Let the string s
-consist of m blocks of zeros and ones, then math.floor(m/2)+1
-is the minimum number of operations for which the entire string can be deleted
 
-'''
 import sys, threading, os, io 
 import math
 import time
@@ -47,36 +41,29 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-# else:
-#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+else:
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n,a,b=mii()
-    t=si()
+    n=ii()
+    a=lmii()
+    b=[0]*n
 
-    if b>=0:
-        print(n*a+n*b)
-        return
+    map=defaultdict(int)
+    res=0
+    for i,x in enumerate(a):
+        x-=i
+
+        res+=map[x]
+        map[x]+=1
+    print(res)
+
+
     
-    c=1
-    for i in range(1,n):
-        if t[i]!=t[i-1]:
-            c+=1
-        
-    m=c//2 +1
-
-    print(n*a+b*m)
-
-
-
-
-
-
-                
 
 
 

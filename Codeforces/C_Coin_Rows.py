@@ -1,10 +1,9 @@
 '''
-Obviously, for b>=0, you should delete the characters one by one so that k=n
-Now b<0 and you have to delete the string in the minimum number of operations. Let the string s
-consist of m blocks of zeros and ones, then math.floor(m/2)+1
-is the minimum number of operations for which the entire string can be deleted
-
+Editorial :
+There are only two options, move right or move down,
+and hence the solution
 '''
+    
 import sys, threading, os, io 
 import math
 import time
@@ -47,36 +46,44 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
     
     
-# if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
-#     sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
-#     sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
-# else:
-#     input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+else:
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
     
     
 def solve():
-    n,a,b=mii()
-    t=si()
-
-    if b>=0:
-        print(n*a+n*b)
-        return
+    n=ii()
+    arr=[]
+    for _ in range(2):
+        arr.append(lmii())
     
-    c=1
+    suff=[0]*n
+    suff[-1]=arr[0][-1]
+
+    for i in range(n-2,-1,-1):
+        suff[i]=suff[i+1]+arr[0][i]
+    
+    pref=[0]*n
+
+    pref[0]=arr[1][0]
     for i in range(1,n):
-        if t[i]!=t[i-1]:
-            c+=1
-        
-    m=c//2 +1
+        pref[i]=pref[i-1]+arr[1][i]
 
-    print(n*a+b*m)
+    ans=int(1e18)
+
+    for i in range(n):
+        tans=0
+
+        if i!=n-1:
+            tans=suff[i+1]
+        if i!=0:
+            tans=max(tans,pref[i-1])
+        ans=min(ans,tans)
+    print(ans)
 
 
-
-
-
-
-                
 
 
 
