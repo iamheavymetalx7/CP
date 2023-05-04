@@ -1,13 +1,6 @@
-    # seen=set()
-    # ans=0
-    # while n!=val:
-    #     ans+=1
-    #     prev=-10**9
-    #     for i in range(n):
-    #         if (s[i]==key) or (i in seen) or (prev+1==i):
-    #             continue
-    #         else:
-    #             seen.add(i)
-    #             n-=1
-    #             prev=i
-    # print(ans)
+if(os.path.exists("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt")):
+    sys.stdin = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/input.txt", 'r')
+    sys.stdout = open("/Users/nitishkumar/Documents/Template_Codes/Python/CP/Codeforces/output.txt", 'w') 
+else:
+    input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
+    

@@ -1,26 +1,2 @@
-import sys,threading, io
-input = lambda: sys.stdin.readline().rstrip()
-def lmii():
-    return list(map(int,input().split()))
-
-def ii():
-    return int(input())
-
-def si():
-    return str(input())
-def lmsi():
-    return list(map(str,input().split()))
-def mii():
-    return map(int,input().split())
-
-def msi():
-    return map(str,input().split())
-
-
-def solve():
-    n=ii()
-   
-
-t=ii()
-for _ in range(t):
-    solve() 
+s="09"
+print(int(s))
