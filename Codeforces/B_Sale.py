@@ -1,4 +1,4 @@
-#bisect.bisect_left(a, x, lo=0, hi=len(a)) is the analog of std::lower_bound()
+pypy#bisect.bisect_left(a, x, lo=0, hi=len(a)) is the analog of std::lower_bound()
 #bisect.bisect_right(a, x, lo=0, hi=len(a)) is the analog of std::upper_bound()
 #from heapq import heappop,heappush,heapify #heappop(hq), heapify(list)
 #from collections import deque as dq #deque  e.g. myqueue=dq(list)
