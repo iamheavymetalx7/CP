@@ -1,2 +1,7 @@
-s="09"
-print(int(s))
+arr=[16,9,12,1,2]
+ans=0
+for ele in arr:
+    ans|=ele
+print(ans)
+
+print(9|17, 7|9)
