@@ -1,7 +1,3 @@
-arr=[16,9,12,1,2]
-ans=0
-for ele in arr:
-    ans|=ele
-print(ans)
+ans = abs(19264704-50027551)+abs(29971771-95204976)
 
-print(9|17, 7|9)
+print(ans)
