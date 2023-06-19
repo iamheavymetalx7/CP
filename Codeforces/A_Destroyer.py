@@ -1,12 +1,12 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 17/06/2023 11:04 Chennai, India
+# * created: 19/06/2023 15:58 Chennai, India
 # **/
         
 
 
 
-## TUTORIAL## HUANGXW's CODE
+
                                                                                                                         
 
 from __future__ import division, print_function
@@ -109,118 +109,16 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
-def cnt_diff(x):
-    n=str(x)
-    return len(set(n))
-
-
-a=set()
-
-for i in range(1,10):
-    for j in range(1,11):
-        a.add(int(str(i)*j))
-
-a = sorted(a)
-
-
-b=set()
-
-
-
-def dfs(i,j,s,k):
-    if k==11:
-        return
-
-    global b
-
-    if s:
-        b.add(int(s))
-    
-
-    dfs(i,j,s+str(i),k+1)
-    dfs(i,j,s+str(j),k+1)
-
-
-for i in range(10):
-    for j in range(10):
-        dfs(i,j,"",0)
-
-b= sorted(b)
-# print(b)
-
-from bisect import bisect_left, bisect_right
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-
-    n,k=mii()
-
-    if k==1:
-        val =a[bisect_left(a,n)]
-        print(val)
-    else:
-        val = b[bisect_left(b,n)]
-        print(val)
-
-
-
-
-
-
-
-
-    # n,k=mii()
-
-    # ele = cnt_diff(n)
-
-    # if ele<=k:
-    #     print(n)
-    #     return
+    
 
     
     
-    # xx= str(n)
-
-
-    # ans=[]
-    # p=len(xx)
-    # if k==1:
-    #     for i in range(1,10):
-    #         ans.append(int(str(i)*(p)))
-    #     ans.sort()
-    #     for el in ans:
-    #         if el>=n:
-    #             res=el
-    #             break
-    #     print(res)
-    #     return
-
-    # l,sl,tl = int(xx[0]),int(xx[1]), int(xx[2])
-
-    # ans1 = xx[0]+xx[1]*(len(xx)-1)
-    # ans2 = str(int(xx[0]))+ "0"*(len(xx))
-    # ans3 = xx[0]+ str(int(xx[1])+1) + xx[0]*(len(xx)-2)
-    # ans4 = xx[0]*len(xx)
-    # mini=10**9
-    # ans =0
-    # if int(ans1)>n and abs(n-int(ans1))<mini:
-    #     ans = int(ans1)
-    #     mini = abs(n-int(ans1))
-
-    # if int(ans2)>n and abs(n-int(ans2))<mini:
-    #     ans = int(ans2)
-    #     mini = abs(n-int(ans2))
-
-
-    # if int(ans3)>n and abs(n-int(ans3))<mini:
-    #     ans = int(ans3)
-    #     mini = abs(n-int(ans3))
-
-    # if int(ans4)>n and abs(n-int(ans4))<mini:
-    #     ans = int(ans4)
-    #     mini = abs(n-int(ans4))
     
-    # print(ans)
+
+    
     
         
             
@@ -366,7 +264,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    # read()
+    read()
     main()
     #dmain()
 
