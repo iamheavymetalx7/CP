@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 29/06/2023 15:09 Chennai, India
 # **/
         
 
@@ -112,24 +112,17 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
     n=ii()
     a=lmii()
-
     a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    pos=1
     
-    print(ans)
+    for i in range(n):
+        if a[i]>=pos:
+            pos+=1
     
+    print(pos-1)
 
     
     
@@ -137,7 +130,7 @@ def solve():
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

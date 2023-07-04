@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 29/06/2023 19:13 Chennai, India
 # **/
         
 
@@ -106,40 +106,73 @@ def tr(n):
     return n*(n+1)//2
 
 
+from types import GeneratorType
+def bootstrap(f, stack=[]):
+    def wrappedfunc(*args, **kwargs):
+        if stack:
+            return f(*args, **kwargs)
+        to = f(*args, **kwargs)
+        while True:
+            if type(to) is GeneratorType:
+                stack.append(to)
+                to = next(to)
+            else:
+                stack.pop()
+                if not stack:
+                    break
+                to = stack[-1].send(to)
+        return to
+
+    return wrappedfunc
+
         
 from collections import Counter, defaultdict, deque
 
-def solve():
-    import sys
-    input =sys.stdin.buffer.readline
-    
-    n=ii()
-    a=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+@bootstrap
+def dfs(node,par):
+    temp=arr[node]
+    for child in d[node]:
+        if child !=par:
+            y=yield dfs(child,node)
+            temp^=y
+    if temp==val :
+        cnt[0]+=1
+        temp=0
+    yield temp
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
-    
-
-    
-    
+for _ in range(ii()):
+    n,k=mii()
+    arr=lmii()
+    l=[]
+    d=defaultdict(lambda :[])
+    for i in range(n-1):
+        a,b=mii()
+        a-=1
+        b-=1
+        d[a].append(b)
+        d[b].append(a)
+        l.append([a,b])
+    cnt=[0]
+    val=0
+ 
+    for el in arr:
+        val^=el
+    dfs(0,-1)
+    if val==0:
+        print("YES")
+    else :
+        if k<3:
+            print("NO")
+        else :
+            if cnt[0]>=2:
+                print("YES")
+            else :
+                print("NO")
+            
         
             
-            
-def main():
-    for i in range(ii()):
-        solve()
-                
+
             
                 
                 
@@ -276,9 +309,88 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 # endregion
 
 
-if __name__ == "__main__":
-    # read()
-    main()
-    #dmain()
 
-# Comment Read()
+
+
+
+'''
+
+import sys
+import io, os
+input = io.BytesIO(os.read(0,os.fstat(0).st_size)).readline
+
+t=int(input())
+for tests in range(t):
+    n,k=map(int,input().split())
+    A=list(map(int,input().split()))
+    E=[[] for i in range(n)]
+
+    for i in range(n-1):
+        x,y=map(int,input().split())
+        x-=1
+        y-=1
+        E[x].append(y)
+        E[y].append(x)
+
+    XOR=0
+    for a in A:
+        XOR^=a
+
+    if XOR==0:
+        print("YES")
+        continue
+
+    ROOT=0
+
+    
+
+    QUE=[ROOT] 
+    Parent=[-1]*(n+1)
+    Parent[ROOT]=n # ROOTの親を定めておく.
+    TOP_SORT=[] # トポロジカルソート
+    Child=[[] for i in range(n)]
+
+    while QUE: # トポロジカルソートと同時に親を見つける
+        x=QUE.pop()
+        TOP_SORT.append(x)
+        for to in E[x]:
+            if Parent[to]==-1:
+                Parent[to]=x
+                Child[x].append(to)
+                QUE.append(to)
+
+    ANS=0
+
+    for x in TOP_SORT[::-1]:
+        if x==0:
+            continue
+
+        sc=A[x]
+
+        for to in Child[x]:
+            sc^=A[to]
+
+        if sc==XOR:
+            ANS+=1
+            A[x]=0
+        else:
+            A[x]=sc
+
+    #print(ANS)
+
+    if ANS>=2 and k>=3:
+        print("YES")
+    else:
+        print("NO")
+
+        
+
+    
+
+
+    
+
+    
+
+
+'''

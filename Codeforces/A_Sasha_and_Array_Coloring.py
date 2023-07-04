@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 22/06/2023 08:29 Chennai, India
 # **/
         
 
@@ -115,20 +115,19 @@ def solve():
     
     n=ii()
     a=lmii()
-
     a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    l,r=0,n-1
+
+    res = 0
+    while l<=r:
+        res+=a[r]-a[l]
+        l+=1
+        r-=1
     
-    print(ans)
+    print(res)
+
+
     
 
     

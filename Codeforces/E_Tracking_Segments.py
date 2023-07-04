@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 22/06/2023 10:07 Chennai, India
 # **/
         
 
@@ -113,22 +113,56 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,m=mii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    S= []
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    for _ in range(m):
+        a,b = mii()
+        S.append([a,b])
     
-    print(ans)
+    change = []
+
+    q=ii()
+    for _ in range(q):
+        ax=ii()
+        change.append(ax)
+    
+    def check(m):
+        A =[0]*(n)
+        
+        for i in range(m):
+            A[change[i]-1]=1
+        
+        SU =[0]
+
+        for x in A:
+            SU.append(SU[-1]+x)
+        
+    
+        for l,r in S:
+            if (SU[r]-SU[l-1])>(r-l+1)//2:
+                return True
+        
+        return False
+
+
+    if check(q)==False:
+        print(-1)
+        return
+    
+    high = q+1
+    low = 0
+
+    while high>low+1:
+        mid = (high+low)//2
+
+        if check(mid):
+            high = mid
+        else:
+            low = mid
+    
+    print(high)
     
 
     

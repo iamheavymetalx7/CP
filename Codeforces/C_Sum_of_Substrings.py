@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 02/07/2023 20:58 Chennai, India
 # **/
         
 
@@ -113,25 +113,34 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,k=mii()
 
-    a.sort()
-    cnt=[0]*(n+1)
+    s=list(si())
+    count1=0
+
     for i in range(n):
-        cnt[a[i]]+=1
+        if s[i]=="1":
+            r=i
+            count1+=1
+            if count1==1:
+                l=i
+    if not count1:
+        print(0)
+        return
     
-    ans,summ=0,0
+    ans=count1*11
+    if k>=(n-r-1):
+        ans-=10
+        count1-=1
+        k-=(n-r-1)
+    
+    if k>=l and count1:
+        ans-=1
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
     print(ans)
-    
 
-    
+
+
     
         
             

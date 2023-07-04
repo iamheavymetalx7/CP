@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 29/06/2023 15:18 Chennai, India
 # **/
         
 
@@ -113,23 +113,27 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,s=mii()
+    fwd=lmii()
+    bwd=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
+    if fwd[0]==0:
+        print("NO")
+        return
     
-    ans,summ=0,0
-
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    if fwd[s-1]==1:
+        print("YES")
+        return
+    if bwd[s-1]==0:
+        print("NO")
+        return
     
-    print(ans)
+    for i in range(s,n):
+        if fwd[i]==1 and bwd[i]==1:
+            print("YES")
+            return
     
+    print("NO")
 
     
     
@@ -137,7 +141,7 @@ def solve():
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

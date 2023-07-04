@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 01/07/2023 20:08 Chennai, India
 # **/
         
 
@@ -108,36 +108,44 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
+from heapq import *
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,m=mii()
+    prices =lmii()
+    prices.sort()
+    atl=lmii()
+    disc=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    curr = sorted(zip(atl,disc),reverse=True)
+    # print(prices)
+    # print(curr)
+    pq=[]
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
+    ans=0
+
+    for p in prices:
+
+        while curr:
+            l,d = curr[-1]
+            if l<=p:
+                heappush(pq,-d)
+                curr.pop()
+            else:break
+        
+        if pq:
+            p+=heappop(pq)
+        ans+=p
+
     print(ans)
-    
-
-    
     
         
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

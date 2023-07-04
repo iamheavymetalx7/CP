@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 29/06/2023 21:51 Chennai, India
 # **/
         
 
@@ -113,31 +113,81 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
+    import math        
+                    
     n=ii()
-    a=lmii()
+    A=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    E=[[] for i in range(n)]
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
+    for i in range(n-1):
+        x,y=mii()
+
+        x-=1
+        y-=1
+        E[x].append(y)
+        E[y].append(x)    
+
+    summ = sum(A)
+    factors =[]
+
+    for f in range(1,int(math.sqrt(summ))+1):
+        if summ%f==0:
+            factors.append(f)
+        
+        if f!=summ//f:
+            factors.append(summ//f)
+    factors.sort()
+    # print(factors)
+
+    ROOT = 0
+
+    QUE=[ROOT] 
+    Parent=[-1]*(n+1)
+    Parent[ROOT]=n 
+    TOP_SORT=[] 
+    Child=[[] for i in range(n)]
+
+    while QUE: # Find parents at the same time as topological sort
+        x=QUE.pop()
+        TOP_SORT.append(x)
+        for to in E[x]:
+            if Parent[to]==-1:
+                Parent[to]=x
+                Child[x].append(to)
+                QUE.append(to)
     
 
     
+    for value in factors:
+        B=A[:]
+        ANS = 0
+        # print(value)
+        for x in TOP_SORT[::-1]:
+
+            sc=B[x]
+
+            for to in Child[x]:
+                sc+=B[to]
+
+            if sc==value:
+                ANS+=1
+                B[x]=0
+            else:
+                B[x]=sc
+        # print(B)
+
+        if ANS*value==summ:
+            print(ANS-1)
+            exit(0)
+
+
+
     
         
             
             
 def main():
-    for i in range(ii()):
         solve()
                 
             
@@ -277,7 +327,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    # read()
+    read()
     main()
     #dmain()
 

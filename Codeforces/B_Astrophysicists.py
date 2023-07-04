@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 19/06/2023 19:29 Chennai, India
 # **/
         
 
@@ -113,28 +113,47 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,k,g = mii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
+    # print(n,k,g)
+
+    val = (g+1)//2
+
+    val-=1
+
+    net = (n-1)*val
+
+    rem = k*g - net
+
+    if rem<=0:
+        print(k*g)
+        # print('-'*20)
+        return
     
-    ans,summ=0,0
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    # print(net,rem)
+
+    
+
+    
+    ans=0
+    ans+=(n-1)*val
+
+    r = rem%g
+
+
+    # print(r,ans,"je")
+
+    
+
+    if r>=(g+1)//2:
+        ans-=(g-r)
+    else:
+        ans+=r
+
     
     print(ans)
-    
-
-    
-    
-        
-            
+    # print('-'*20) 
             
 def main():
     for i in range(ii()):

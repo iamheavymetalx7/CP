@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 04/07/2023 18:28 Chennai, India
 # **/
         
 
@@ -110,28 +110,57 @@ def tr(n):
 from collections import Counter, defaultdict, deque
 
 def solve():
-    import sys
-    input =sys.stdin.buffer.readline
+    INF = 10**9
+    # import sys
+    # input =sys.stdin.buffer.readline
     
-    n=ii()
+    n,x=mii()
     a=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    mx=[-INF]*(n+1)
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
-    
+    mx[0]=0
 
+
+    for l in range(n):
+        s =0
+
+        for r in range(l,n):
+            s+=a[r]
+
+            mx[r-l+1]=max(mx[r-l+1],s)
+
+            
+    ans=[0 for _ in range(n+1)]
+
+    for k in range(n+1):
+        
+        bst = 0
+
+        for i in range(n+1):
+            bst=max(bst,mx[i]+min(k,i)*x)
+        
+        ans[k]=bst
+
+    # # print(*ans)
+    # n, x = map(int, input().split())
+    # a = list(map(int, input().split()))
+    # mx = [-INF for i in range(n + 1)]
+    # mx[0] = 0
+    # for l in range(n):
+    #     s = 0
+    #     for r in range(l, n):
+    #         s += a[r]
+    #         mx[r - l + 1] = max(mx[r - l + 1], s)
+
+    # ans = [0 for i in range(n + 1)]
     
+    # for k in range(n + 1):
+    #     bst = 0
+    #     for i in range(n + 1):
+    #         bst = max(bst, mx[i] + min(k, i) * x)
+    #     ans[k] = bst
+    print(*ans)    
     
         
             

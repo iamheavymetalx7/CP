@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 02/07/2023 21:44 Chennai, India
 # **/
         
 
@@ -105,7 +105,7 @@ def read():
 def tr(n):
     return n*(n+1)//2
 
-
+from bisect import *
         
 from collections import Counter, defaultdict, deque
 
@@ -113,23 +113,46 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
+    n,ques=mii()
     a=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    q = deque()
+    for i,x in enumerate(a):
+        q.append([i+1,x])
+    vic =[[] for _ in range(n+1)]
+    round =0
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+
+    while q[0][1]!=n:
+        round+=1
+        idx1,val1 = q.popleft()
+        idx2,val2=q.popleft()
+
+        if val1>val2:
+            vic[idx1].append(round)
+            q.appendleft([idx1,val1])
+            q.append([idx2,val2])
+        else:
+            vic[idx2].append(round)
+            q.append([idx1,val1])
+            q.appendleft([idx2,val2])
     
-    print(ans)
+
+
     
+        
+
+
+    for _ in range(ques):
+        i,k=mii()
+        if a[i-1]==n:
+            print(max(0,min(k-round+1,k)))
+        else:
+            if vic[i]==[]:
+                print(0)
+            else:
+                print(bisect_right(vic[i],k))
+        
 
     
     

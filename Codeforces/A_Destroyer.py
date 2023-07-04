@@ -112,8 +112,32 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
+
+    n=ii()
+
+    a=lmii()
+
+    dic = Counter(a)
+
+    maxi = max(a)
+    # print(a)
+
+    for i in range(maxi+1):
+        if not dic[i]:
+            print("NO")
+            return
     
 
+
+
+
+    for i in range(1,maxi+1):
+        # print(i,i+1)
+        if dic[i-1]<dic[i]:
+            print("NO")
+            return
+    
+    print("YES")
     
     
     
@@ -264,7 +288,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

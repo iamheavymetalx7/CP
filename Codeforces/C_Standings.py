@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 01/07/2023 19:26 Chennai, India
 # **/
         
 
@@ -114,21 +114,16 @@ def solve():
     input =sys.stdin.buffer.readline
     
     n=ii()
-    a=lmii()
-
-    a.sort()
-    cnt=[0]*(n+1)
+    arr=[]
     for i in range(n):
-        cnt[a[i]]+=1
+        a,b=mii()
+        arr.append((a*10**20//(a+b),(i+1)*(-1)))
     
-    ans,summ=0,0
+    arr.sort(reverse=True)
+    print(*[v*(-1) for _,v in arr])    # print(arr)
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
+
+
     
 
     
@@ -137,7 +132,7 @@ def solve():
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

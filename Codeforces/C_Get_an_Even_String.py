@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 04/07/2023 12:25 Chennai, India
 # **/
         
 
@@ -113,23 +113,22 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    alph =[0]*26
 
-    a.sort()
-    cnt=[0]*(n+1)
+    s=si()
+    n=len(s)
+
+    m=0
+
     for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
-
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
-    
+        curr = ord(s[i])-ord('a')
+        if alph[curr]==0:
+            alph[curr]=1
+        else:
+            m+=2
+            alph=[0]*26    
+    print(n-m)
+            
 
     
     

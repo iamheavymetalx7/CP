@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 04/07/2023 00:09 Chennai, India
 # **/
         
 
@@ -114,21 +114,16 @@ def solve():
     input =sys.stdin.buffer.readline
     
     n=ii()
-    a=lmii()
-
-    a.sort()
-    cnt=[0]*(n+1)
+    s=si()
+    x,y=0,0
     for i in range(n):
-        cnt[a[i]]+=1
+        if s[i]=="1":
+            x+=1
+        else:
+            y+=1
     
-    ans,summ=0,0
-
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
+    arr=[x for x in range(2**x,2**n-2**y+2)]
+    print(*arr)
     
 
     
@@ -137,7 +132,7 @@ def solve():
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

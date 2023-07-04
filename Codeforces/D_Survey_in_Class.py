@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 20/06/2023 10:39 Chennai, India
 # **/
         
 
@@ -109,26 +109,43 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+def comp(a):
+    return a[1]-a[0]+1
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    n,m=mii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    arr=[]
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    for _ in range(n):
+        l,r = mii()
+        arr.append([l,r])
     
-    print(ans)
+    # print(arr)
+
+    minLen = 1e9
+    maxLeft = 0
+    minRight = 1e9
+
+    for ele in arr:
+        minLen = min(minLen, comp(ele))
+        maxLeft = max(maxLeft, ele[0])
+        minRight = min(minRight, ele[1])
+    # print(minLen, maxLeft, minRight)
+    ans=0
+
+    for ele in arr:
+        l= comp(ele)
+
+        ans = max(ans, l-minLen)
+        ans = max(ans, min(l,ele[1]-minRight))
+        ans = max(ans, min(l,maxLeft-ele[0]))
+
+    print(min(m,ans)*2)
+
+        
     
 
     

@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 18/06/2023 13:46 Chennai, India
 # **/
         
 
@@ -113,23 +113,28 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a=lmii()
+    l,r=mii()
+    xl = [int(x) for x in str(l)]
+    xr = [int(x) for x in str(r)]
 
-    a.sort()
-    cnt=[0]*(n+1)
+    ll=len(xl)
+    rr=len(xr)
+    if ll<rr:
+        xl =[0]*(rr-ll)+xl
+    else:
+        xr=[0]*(ll-rr)+xr
+
+    n=max(ll,rr)
+    ans=0
     for i in range(n):
-        cnt[a[i]]+=1
+        if xr[i]-xl[i]>=1:
+            break
     
-    ans,summ=0,0
+    ans+=xr[i]-xl[i]
+    ans+=(n-i-1)*9
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
     print(ans)
-    
+
 
     
     

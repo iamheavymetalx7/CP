@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 04/07/2023 11:50 Chennai, India
 # **/
         
 
@@ -114,28 +114,46 @@ def solve():
     input =sys.stdin.buffer.readline
     
     n=ii()
-    a=lmii()
+    arr=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    pos,neg,a=[],[],[]
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    for x in arr:
+        if x>0:
+            pos.append(x)
+        elif x<0:
+            neg.append(x)
+        else:
+            if len(a)<2:
+                a.append(x)
     
-    print(ans)
+    if len(pos)>2 or len(neg)>2:
+        print("NO")
+        return
     
+    for x in pos:
+        a.append(x)
+    
+    for x in neg:
+        a.append(x)
+    
+    # print(a)
 
-    
-    
-        
+    for i in range(len(a)):
+        for j in range(i+1,len(a)):
+            for k in range(j+1,len(a)):
             
-            
+                ok = False
+                for l in range(len(a)):
+                    if a[i]+a[j]+a[k] == a[l]:
+                        ok = True
+                if not ok:
+                    print("NO")
+                    return
+    print("YES")
+
+
+
 def main():
     for i in range(ii()):
         solve()

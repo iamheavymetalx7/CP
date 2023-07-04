@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 18/06/2023 13:57 Chennai, India
 # **/
         
 
@@ -114,22 +114,37 @@ def solve():
     input =sys.stdin.buffer.readline
     
     n=ii()
-    a=lmii()
+    a = si()
+    b= si()
 
-    a.sort()
-    cnt=[0]*(n+1)
+    c = b[::-1]
+
+    # print(a,b,c)
+    if a==b:
+        print(0)
+        return
+    elif a==c:
+        print(2)
+        return
+    
+    
+
+    cnt1,cnt2=0,0
+
     for i in range(n):
-        cnt[a[i]]+=1
+        if a[i]!=b[i]:
+            cnt1+=1
     
-    ans,summ=0,0
+    for i in range(n):
+        if a[i]!=c[i]:
+            cnt2+=1
+    
+    print(min(cnt1*2-(cnt1%2==1), 2*cnt2-(cnt2%2==0)))
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
-    
-    print(ans)
-    
+
+
+
+
 
     
     

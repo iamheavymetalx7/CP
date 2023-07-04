@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 22/06/2023 09:01 Chennai, India
 # **/
         
 
@@ -112,29 +112,63 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
     n=ii()
-    a=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    tree = defaultdict(list)
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+    for _ in range(n-1):
+        x,y=mii()
+        tree[x-1].append(y-1)
+        tree[y-1].append(x-1)
     
-    print(ans)
-    
+    topo_sort = []
 
     
+
+
+
+    parent =[-1]*(n)
+    parent[0]=n
+    child =[[] for _ in range(n)]
+
+    q = deque([0])
+
+    while q:
+        node = q.popleft()
+        topo_sort.append(node)
+        for to in tree[node]:
+            if parent[to]==-1:
+                parent[to] = node
+                child[node].append(to)
+                q.append(to)
     
+    # print(parent)
+
+    # print(child)
         
-            
+    dp =[0]*(n)
+
+    for i in range(n):
+        if i!=0 and len(tree[i])==1:
+            dp[i]=1
+
+    for x in topo_sort[::-1]:
+        if x==0:
+            break
+        dp[parent[x]]+=dp[x]
+    # print(dp)
+
+
+
+    q =ii()
+    for _ in range(q):
+        x,y = mii()
+        print(dp[x-1]*dp[y-1])
+
+
+    
+
+    
             
 def main():
     for i in range(ii()):

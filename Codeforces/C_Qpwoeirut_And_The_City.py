@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/06/2023 18:46 Chennai, India
+# * created: 02/07/2023 23:59 Chennai, India
 # **/
         
 
@@ -112,28 +112,43 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
     n=ii()
     a=lmii()
 
-    a.sort()
-    cnt=[0]*(n+1)
-    for i in range(n):
-        cnt[a[i]]+=1
-    
-    ans,summ=0,0
+    odd=[]
+    tot1 =0
 
-    for k in range(0,n+1):
-        if summ==k and cnt[k]==0:
-            ans+=1
-        summ+=cnt[k]
+
+    for i in range(1,n-1,2):
+        mx = max(a[i-1],a[i+1])-a[i]+1
+        mx=max(0,mx)
+        tot1+=mx
+        odd.append(mx)
+    if n%2==1:
+        print(tot1);return
     
+
+    even =[]
+    tot2=0
+
+    for i in range(2,n-1,2):
+        mx=max(a[i-1],a[i+1])-a[i]+1
+        mx=max(0,mx)
+        tot2+=mx
+        even.append(mx)
+    
+    # print(len(odd),len(even),"lenssss",n//2-1)
+
+    ans = min(tot1,tot2)
+
+    for i in range(len(even)):
+        tot2+=odd[i]-even[i]
+        ans=min(ans,tot2)
+
     print(ans)
     
 
-    
-    
-        
+
             
             
 def main():

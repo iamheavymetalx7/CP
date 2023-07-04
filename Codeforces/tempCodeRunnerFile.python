@@ -1,3 +1,32 @@
-ans = abs(19264704-50027551)+abs(29971771-95204976)
+# n,k=map(int,input().split())
+# a=list(map(int, input().split()))
+def solve(n,k,a):
+    prod =1
+    maxi=0
 
-print(ans)
+
+    def recur(idx,maxi,prod):
+        print(idx,"here",maxi,prod,prod%k)
+        if idx>=n:
+            return
+        
+        if prod%k==0:
+            print("YES")
+            return
+
+        if a[idx]>maxi: #take
+            maxi=a[idx]
+            prod*=a[idx]
+            recur(idx+1,maxi,prod)
+
+
+        recur(idx+1,maxi,prod)  # not take
+        
+    ans =  recur(0,maxi,prod)
+        
+    if ans:
+        print("YES")
+    else:
+        print("NO")
+
+solve(4,2,[3,2,5,7])
