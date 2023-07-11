@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 06/07/2023 00:37 Chennai, India
 # **/
         
 
@@ -113,25 +113,65 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n=ii()
+    dic=[[] for _ in range(n+1)]
+    deg=[0]*(n+1)
+    l=[]
 
-    print(hero)
-
+    f=0
     
+    for jj in range(n):
+        x,y=mii()
+
+        dic[x].append(y)
+        dic[y].append(x)
+        deg[x]+=1
+        deg[y]+=1
+    
+    for i in range(n+1):
+        if deg[i]>2:
+            print("NO")
+            return
+        
+    
+
+
+
+
+    color=[-1]*(n+1)
+
+    for i in range(1,n+1):
+            if color[i]!=-1:
+                continue
+            
+            color[i] = 0
+            
+            q=deque([i])
+
+            while q:
+                a=q.popleft()
+                for child in dic[a]:
+                    if color[child]==color[a]:
+                        print("NO")
+                        return
+                    if color[child]!=-1:
+                        continue
+                    color[child]=1^color[a]
+                    q.append(child)
+
+    print("YES")
+
+
+
+
+
+
     
         
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +311,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

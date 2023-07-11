@@ -106,9 +106,10 @@ def tr(n):
     return n*(n+1)//2
 
 
-        
+## TRIOLOGY INNOVATIONS MARCH
+## https://www.thejoboverflow.com/p/p1162/
 from collections import Counter, defaultdict, deque
-
+from heapq import *
 def solve():
     import sys
     input =sys.stdin.buffer.readline
@@ -121,14 +122,20 @@ def solve():
     for _ in range(Q):
         hero.append(list(map(int, input().split())))
     
-    
+
+
+    from bisect import bisect_left, bisect_right
+
+    mon.sort()
+    hero.sort()
     print(mon)
-
     print(hero)
-
+    total =0
+    for x in mon:
+        total+= x[1]-x[0]+1
     
-    
-        
+    idx = bisect_left(mon,[3,3,5])
+    print(idx,"idx")
             
             
 def main():

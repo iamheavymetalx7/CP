@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 06/07/2023 17:21 Chennai, India
 # **/
         
 
@@ -105,7 +105,7 @@ def read():
 def tr(n):
     return n*(n+1)//2
 
-
+from bisect import bisect_left,bisect_right
         
 from collections import Counter, defaultdict, deque
 
@@ -113,25 +113,36 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n,c,q = mii()
+    s=si()
+    a=[0]
+    b=[n]
 
-    print(hero)
+    for _ in range(c):
+        l,r=mii()
+        a.append(l)
+        b.append(b[-1]+r-l+1)
 
     
-    
+    # print(a,b)
+
+    for _ in range(q):
+
+        k = ii()
+
+        while k>n:
+            j = bisect_left(b,k)
+
+            k = k-b[j-1]-1+a[j]
         
+        print(s[k-1])
+
+
+
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +282,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

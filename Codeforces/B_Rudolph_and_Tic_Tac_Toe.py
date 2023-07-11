@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 07/07/2023 20:18 Chennai, India
 # **/
         
 
@@ -112,19 +112,50 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
+    a=[]
+    for _ in range(3):
+        arr=list(si())
+        a.append(arr)
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
+    for row in a:
+        if len(set(row))==1:
+            if row[0]!=".":
+                print(row[0])
+                return
     
+    for j in range(3):
+        col=[]
+        for i in range(3):
+            col.append(a[i][j])
+        if len(set(col))==1:
+            if col[0]!=".":
+                print(col[0])
+                return
+    diag=[]
+    for i in range(3):
+        diag.append(a[i][i])
     
-    print(mon)
+    if len(set(diag))==1:
+        if diag[0]!='.':
+            print(diag[0])
+            return
+    
+    ll=[[2,0],[1,1],[0,2]]
+    leftd=[]
+    for i in range(3):
+        leftd.append(a[ll[i][0]][ll[i][1]])
+    
+    if len(set(leftd))==1:
+        if leftd[0]!=".":
+            print(leftd[0])
+            return
+    
+    print("DRAW")
+    
+            
 
-    print(hero)
+
+    
 
     
     
@@ -132,6 +163,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +303,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

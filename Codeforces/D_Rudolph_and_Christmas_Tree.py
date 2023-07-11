@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 07/07/2023 20:50 Chennai, India
 # **/
         
 
@@ -113,18 +113,31 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n,d,h=mii()
+    heights= lmii()
 
-    print(hero)
+    # print(heights)
+
+    ans = 0.5*(d*h)*n
+    # print(ans,"if no interse")
+
+    to_sub=0
+    for i in range(n-1):
+        # print(heights[i+1],heights[i])
+        if heights[i+1]-heights[i]>=h:
+            continue
+        else:
+            val = (h-(heights[i+1]-heights[i]))
+
+
+            to_sub+=(val)*(d)*val/(h*2)
+    
+    print(ans-to_sub)
+
+
+
+
+    
 
     
     
@@ -132,6 +145,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +285,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

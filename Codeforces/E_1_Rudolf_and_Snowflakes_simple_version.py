@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 07/07/2023 21:28 Chennai, India
 # **/
         
 
@@ -108,23 +108,35 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
+import math
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
+    n=ii()
+    if n==1 or n==2 or n==3:
+        print("NO")
+        return
     
-    
-    print(mon)
 
-    print(hero)
+    for i in range(2,10**3+1):
+        curr=1
+        for x in range(1,21):
+            curr+=i**x
+
+            if curr==n and x>1:
+                # print(i,"this is added")
+                print("YES")
+                return
+            elif curr>n:
+                break
+    
+    print("NO")
+
+
+
+
+    
 
     
     
@@ -132,6 +144,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +284,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

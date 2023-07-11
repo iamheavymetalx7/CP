@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 07/07/2023 21:55 Chennai, India
 # **/
         
 
@@ -106,25 +106,19 @@ def tr(n):
     return n*(n+1)//2
 
 
-        
+import math
 from collections import Counter, defaultdict, deque
 
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n=ii()
 
-    print(hero)
+    for i in range(2,10**3+5):
+        if 
+
+
 
     
     
@@ -132,6 +126,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -146,7 +141,17 @@ def main():
     
     
     
-    
+from sys import stdin
+input = lambda: stdin.readline().rstrip('\r\n')
+ 
+ 
+for _ in range(int(input())):
+    n = int(input())
+    ans = 0
+    for i in range(n):
+        a, b = map(int, input().split())
+        ans += a > b
+    print(ans)
         
             
     

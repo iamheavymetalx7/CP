@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 05/07/2023 18:35 Chennai, India
 # **/
         
 
@@ -109,22 +109,34 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+lis =[]
+
+for i in range(1,4*10**4+1):
+    if str(i)==str(i)[::-1]:
+        lis.append(i)
+dp=[0]*(4*10**4+1)
+dp[0]=1
+mod=10**9+7
+
+
+for i in lis:
+    for j in range(1,4*10**4+1):
+        if j>=i:
+            # print(i,j)
+            dp[j]= (dp[j]+dp[j-i]) % mod
+# print(lis)
+# print(len(lis))
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n=ii()
 
-    print(hero)
+    print(dp[n])
+
+            
+
+    
 
     
     
@@ -132,6 +144,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +284,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

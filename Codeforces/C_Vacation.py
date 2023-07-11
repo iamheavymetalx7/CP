@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 09/07/2023 14:26 Chennai, India
 # **/
         
 
@@ -112,26 +112,37 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
 
-    print(hero)
+    n=ii()
+    a=[]
 
+    for _ in range(n):
+        a.append(lmii())
+    # print(a)
     
+    dpa=[0]*(n)
+    dpb=[0]*(n)
+    dpc=[0]*(n)
+
+    dpa[0]=a[0][0]
+    dpb[0]=a[0][1]
+    dpc[0]=a[0][2]
+
+    for i in range(1,n):
+        dpa[i]=a[i][0]+max(dpb[i-1],dpc[i-1])
+
+        dpb[i]=a[i][1]+max(dpa[i-1],dpc[i-1])
+    
+        dpc[i]=a[i][2]+max(dpb[i-1],dpa[i-1])
+    
+    print(max(dpa[-1],dpb[-1],dpc[-1]))
     
         
             
             
 def main():
+    
+    # for i in range(ii()):
         solve()
                 
             
@@ -271,7 +282,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

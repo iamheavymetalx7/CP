@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 05/07/2023 19:30 Chennai, India
 # **/
         
 
@@ -112,19 +112,53 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n,m=mii()
+    a=[]
 
-    print(hero)
+    for _ in range(n):
+        a.append(lmii())
+    
+    s=[0]*n
+    for i in range(n):
+        c=0
+        for j in range(m):
+            c+=a[i][j]
+        s[i]=c
+
+    if sum(s)%n!=0:
+        print(-1)
+        return
+    
+    reqd=sum(s)//n
+
+    ans =[]
+
+    for j in range(m):
+        l,g= [], []
+        for i in range(n):
+            if s[i]>reqd and a[i][j]:
+                g.append(i)
+            elif s[i]<reqd and not a[i][j]:
+                l.append(i)
+        
+        for i in range(min(len(l),len(g))):
+            s[l[i]]+=1
+            s[g[i]]-=1
+            ans.append([l[i]+1,g[i]+1,j+1])
+    
+    print(len(ans))
+    for x in ans:
+        print(*x)
+    
+
+
+
+
+                    
+
+
+
+    
 
     
     
@@ -132,6 +166,7 @@ def solve():
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +306,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

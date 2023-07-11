@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 06/07/2023 14:36 Chennai, India
 # **/
         
 
@@ -112,19 +112,34 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    s=si()
 
-    print(hero)
+    if not "AB" in s or not "BA" in s:
+        print("NO")
+    else:
+        t=s
+        f=0
+        
+        i=s.index("AB")
+        s=s[:i]+"D"+"C"+s[i+2:]
+        if "BA" in s:
+            print("YES")
+            return
+        
+            f=1
+        if not f:
+            s=t
+            i=s.index("BA")
+            s=s[:i]+"E"+"C"+s[i+2:]
+            if "AB" in s:
+                print("YES")
+                return
+                f=1
+        if not f:
+            print("NO")
+            
+
+    
 
     
     
@@ -132,6 +147,7 @@ def solve():
             
             
 def main():
+    # for i in range(ii()):
         solve()
                 
             
@@ -271,7 +287,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

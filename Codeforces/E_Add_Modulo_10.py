@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 06/07/2023 18:06 Chennai, India
 # **/
         
 
@@ -113,25 +113,42 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    cnt=[0]*(10)
 
-    print(hero)
+    n=ii()
+    a=lmii()
 
+    bool5=False
+
+    for i in range(n):
+        if a[i]%5==0:
+            a[i]+=a[i]%10
+            bool5=True
     
+    if len(set(a))==1:
+        print("YES")
+        return
+
+    if bool5:
+        print("NO")
+        return
     
+
+
+    for i in range(n):
+        while a[i]%10!=2:
+            a[i]+=a[i]%10
+        a[i]%=20
+
+    if len(set(a))>1:
+        print("NO")
+        return
+    print("YES")    
         
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +288,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

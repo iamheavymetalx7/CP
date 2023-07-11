@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 08/07/2023 09:25 Chennai, India
+# * created: 07/07/2023 20:27 Chennai, India
 # **/
         
 
@@ -109,29 +109,50 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+from bisect import bisect_left
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    N,Q = map(int, input().split())
-    mon=[]
-    for _ in range(N):
-        mon.append(list(map(int, input().split())))
-    hero=[]
-    for _ in range(Q):
-        hero.append(list(map(int, input().split())))
-    
-    
-    print(mon)
+    n,m,h=mii()
+    arr=[]
 
-    print(hero)
+    for jj in range(n):
+        a=lmii()
+        a.sort()
+        prefix=[0]*m
+        prefix[0]=a[0]
+        for i in range(1,m):
+            prefix[i]=a[i]+prefix[i-1]
 
-    
+        # print(prefix)
+        
+        penalty,score=0,0
+
+        for ele in prefix:
+            if ele<=h:
+                penalty+=ele
+                score+=1
+            else:
+                break
+        if jj==0:
+            jjscore=-score
+            jjpenalty=penalty
+            jjidx=jj
+
+        arr.append([-score,penalty,jj])
+
+    arr.sort()    
+
+    idx =    bisect_left(arr,[jjscore,jjpenalty,jjidx])
+
+    print(idx+1)
     
         
             
             
 def main():
+    for i in range(ii()):
         solve()
                 
             
@@ -271,7 +292,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 
