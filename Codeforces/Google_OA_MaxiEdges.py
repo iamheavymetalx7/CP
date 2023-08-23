@@ -4,9 +4,9 @@
 # **/
         
 
+## https://leetcode.com/discuss/interview-question/2401866/Google-or-OA-or-Remove-maximum-edges#:~:text=You%20have%20to%20remove%20maximum,the%20whole%20tree%20remains%20connected.
 
-
-
+## this is wrong solution, see this: https://leetcode.com/problems/create-components-with-same-value/
                                                                                                                         
 
 from __future__ import division, print_function
@@ -327,7 +327,7 @@ input = lambda: sys.stdin.readline().rstrip("\r\n")
 
 
 if __name__ == "__main__":
-    read()
+    # read()
     main()
     #dmain()
 

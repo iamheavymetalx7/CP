@@ -1,1 +1,1 @@
-    print(arr)
+updating value of ans
