@@ -124,7 +124,7 @@ def zAlgorithm(s, p, n, m):
     # Return an integer.
 
     string = p+"$"+s
-    print(string)
+    print(string) 
 
     z_arr = zfunc(string)
     print(z_arr)
@@ -133,10 +133,10 @@ def zAlgorithm(s, p, n, m):
         if z_arr[i]==m:
             cnt+=1
     return (cnt)
-
+ 
 def zfunc(st):
     n=len(st)
-    z = [0 for _ in range(n)]
+    z = [0 for _ in range (n)]
     l,r=0,0
     for i in range(1,n):
 
