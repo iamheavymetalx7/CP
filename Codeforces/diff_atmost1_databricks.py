@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 22/10/2023 00:39 Chennai, India
 # **/
         
 
@@ -111,21 +111,19 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
-    
-    print("Yes")
+    a=lmii()
+    dic = defaultdict(int)
+    for x in a:dic[x]+=1
+    cnt=0
+
+    for i in range(len(a)):
+        s = str(a[i])
+        for j in range(len(s)):
+            for k in range(1,10):
+                new_s = s[:j]+str(k)+s[j+1:]
+                if int(new_s) in dic and int(new_s)!=a[i]:
+                    cnt+=dic[int(new_s)]
+    print(cnt//2)
     
 
     

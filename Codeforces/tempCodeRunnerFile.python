@@ -1,45 +1,9 @@
-def main():
-    n = int(input())
-    b = [0] * (n + 1)
-    tot = 0
-    i = 1
-
- 
-    while i <= n:
-        b[i] = int(input())
-        tot += b[i]
-        i += 1
-    print(b)
-
-    p = [0] * (n + 5)
-    i = 1
- 
-    while i <= n:
-        p[i] = min(b[i], b[i] + p[i - 1])
-        i += 1
- 
-    print(p)
-    s = [0] * (n + 5)
-    i = n
-    sum_val = 0
- 
-    while i >= 1:
-        sum_val = sum_val + b[i]
-        s[i] = min(sum_val, s[i + 1])
-        i -= 1
- 
-    i = 0
-    t = 0
-    d = 1e18
-    print(s)
- 
-    while i <= n:
-        v = min(t, p[i]) + min(s[i + 1], t)
-        d = min(d, v)
-        i += 1
-    print(v,"minimum")
- 
-    print(tot - 2 * d)
- 
-if __name__ == "__main__":
-    main()
+lst = [0,1]
+a=0
+b=1
+for i in range (50):
+    c=a+b
+    a=b
+    b=c
+    lst.append(c)
+print(*lst)    

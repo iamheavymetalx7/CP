@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 03/10/2023 11:33 Chennai, India
 # **/
         
 
@@ -110,27 +110,44 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
+    n,m=mii()
+    k=ii()
+    maze =[]
+    start = lmii()
     for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
-    
-    print("Yes")
-    
-
-    
-    
+        maze.append(list(si().split()))
+    # print(maze)
+    def canReturnToStart(maze, start, k):
+        rows, cols = len(maze), len(maze[0])
         
+        def is_valid(x, y):
+            return 0 <= x < rows and 0 <= y < cols and maze[x][y] != '*'
+        
+        def dfs(x, y, moves):
+            if moves >= k and x == start[0] and y == start[1]:
+                return True
+            
+            if is_valid(x, y):
+                original = maze[x][y]
+                maze[x][y] = '*'
+                
+                # Try moving in all four directions
+                directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+                for dx, dy in directions:
+                    if dfs(x + dx, y + dy, moves + 1):
+                        return True
+                
+                maze[x][y] = original
+            
+            return False
+        
+        return dfs(start[0], start[1], 0)
+        
+
+    if canReturnToStart(maze, start, k):
+        print("YES")
+    else:
+        print("NO")
             
             
 def main():

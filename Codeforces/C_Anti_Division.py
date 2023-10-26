@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 05/10/2023 03:31 Chennai, India
 # **/
         
 
@@ -106,26 +106,22 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
+import math
+from math import lcm
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
     
-    print("Yes")
+    a,b,c,d =mii()
+    val1 = (b//c)-((a+c-1)//c) +1
+    val2 =  (b//d)-((a+d-1)//d)+1
+    
+    # print(b,a,d,b//d, (a+d-1)//d)
+    # print(val1,val2)
+    new = math.lcm(c,d)
+    val3 = b//(new)-((a+new-1)//new)+1
+    # print(val3)
+    print(b-a-(val1+val2)+val3+1)
     
 
     

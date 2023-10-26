@@ -111,16 +111,67 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
+    n,m=mii()
+    a  =[]
+    for _ in range(n):
+        a.append(lmii())
     
+    vis =[[0]*(m) for _ in range(n)]
+    dp=[[1]*(m) for _ in range(n)]
+
+
+    def dfs(i,j):
+        vis[i][j]=1
+        if i-1>=0:
+            if a[i-1][j]>a[i][j]:
+                if not vis[i-1][j]:
+                    dfs(i-1,j)
+                dp[i][j] = max(dp[i][j],dp[i-1][j]+1)
+                
+
+        if i+1<n:
+            if a[i+1][j]>a[i][j]:
+                if not vis[i+1][j]:
+                    dfs(i+1,j)
+                dp[i][j] = max(dp[i][j],dp[i+1][j]+1)
+
+        if j+1<m:
+            if a[i][j+1]>a[i][j]:
+                if not vis[i][j+1]:
+                    dfs(i,j+1)
+                dp[i][j] = max(dp[i][j],dp[i][j+1]+1)
+
+
+        if j-1>=0:
+            if a[i][j-1]>a[i][j]:
+                if not vis[i][j-1]:
+                    dfs(i,j-1)
+                dp[i][j] = max(dp[i][j],dp[i][j-1]+1)
+
+
+    for i in range(n):
+        for j in range(m):
+            if not vis[i][j]:
+                dfs(i,j)
     
 
+    mx,mxborder =-1,-1
+    # print(dp)
+    for i in range(n):
+        for j in range(m):
+            mx = max(mx,dp[i][j])
+
+    for i in range(n):
+        for j in range(m):
+            if (i==0 or i==n-1 or j==0 or j==m-1):
+                mxborder = max(mxborder, dp[i][j])
     
-    
+    print(mxborder,mx)
         
             
             
 def main():
-    for i in range(ii()):
+    # for i in range(ii()):
         solve()
                 
             

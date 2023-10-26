@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 03/10/2023 15:09 Chennai, India
 # **/
         
 
@@ -12,7 +12,6 @@
 from __future__ import division, print_function
 
 import os,sys
-#sys.setrecursionlimit(9*10**8)
 from io import BytesIO, IOBase
 
 if sys.version_info[0] < 3:
@@ -40,6 +39,7 @@ def msi():
 
 i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
+sys.setrecursionlimit(1000000)
 
 import threading
 def dmain():
@@ -110,22 +110,37 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
     
-    print("Yes")
+    n,m=mii()
+    a=lmii()
+    MOD = int(1e9)+7
+    b=lmii()
+
+    from functools import cache
+    
+    @cache
+    def recur(i,j):
+        if i>=n or j>=m:
+            return 0
+        
+        ans = 0 
+
+        if a[i]==b[j]:
+            ans+=1
+            ans=(ans+recur(i+1,j))%MOD
+            ans = (ans+recur(i,j+1))%MOD
+        else:
+            ans =  (ans - recur(i+1,j+1))%MOD
+
+            ans = (ans+recur(i+1,j))%MOD
+            ans = (ans+recur(i,j+1))%MOD
+        
+        return ans
+    
+    val = recur(0,0)
+    print(1+val)
+
+        
     
 
     

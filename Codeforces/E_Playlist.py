@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 10/10/2023 08:53 Chennai, India
 # **/
         
 
@@ -103,31 +103,62 @@ def read():
 def tr(n):
     return n*(n+1)//2
 
+def modfac(n,mod):
+    facts=[1]
+    fac=1
+    for m in range(1,n+1):
+        fac*=m
+        fac%=mod
+        facts.append(fac)
+    
+    invs = [1]*(n+1)
+    inv = pow(fac,mod-2,mod)
+    invs[-1]=inv
+
+    for m in range(n,1,-1):
+        inv *= m
+        inv %= mod
+        invs[m-1] = inv
+    
+    return facts,invs
+
+
+mod = 998244353
+facs,invs = modfac(int(1e5),mod)
 
         
 from collections import Counter, defaultdict, deque
 
+def modInverse(n,mod):
+    return pow(n,mod-2,mod)
+
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
     
-    print("Yes")
     
+    n,x=mii()
+    v=lmii()
 
+    dp=[0]*(x+1)
+    dp[0]=1
+    modinvn=modInverse(n,mod)
+    bad=0;good=0
+
+    for i in range(x+1):
+        for j in range(n):
+            if i+v[j]<=x:
+                dp[i+v[j]]=(dp[i+v[j]]+dp[i]*modinvn)%mod
+            else:
+                if j==0:
+                    good = (good+dp[i])%mod
+                else:
+                    bad = (bad +dp[i])%mod
+    bad+=good
+
+    res = good*modInverse(bad,mod)
+
+    print(res%mod)
     
     
         

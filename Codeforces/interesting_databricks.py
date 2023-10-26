@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 21/10/2023 14:47 Chennai, India
 # **/
         
 
@@ -110,25 +110,40 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
+    
+    
     n=ii()
-    a=[]
+    words=[]
     for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
+        words.append(si())
     
-    print("Yes")
-    
+    k = ii()
+    c=0
+    for v in (words):
+        f=False
+        for i in range(len(v)-k+1):
+            if len(set(v[i:i+k]))==1:
+                if i>0 and i+k<len(v) and v[i]!=v[i-1] and v[i+k]!=v[i+k-1]:
+                    f=True
+                    break
+                elif i==0:
+                
+                    if v[i+k]!=v[i+k-1]:
+                        f=True
+                        break
+                else:
+                    if v[i]!=v[i-1]:
+                        f=True
+                        break
+        if f:
+            c+=1
+    print(c)
 
-    
+
+
+
+
+
     
         
             

@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 06/10/2023 01:57 Chennai, India
 # **/
         
 
@@ -107,26 +107,46 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+## https://codeforces.com/blog/entry/67857?#comment-521089
+## HYNDUF
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
     
-    print("Yes")
+    n,k=mii()
+    mx=0
+    val = ((n-2)*(n-1))//2
+    for i in range(1,n-2+1):
+        mx+=i
+    # print(k,mx,"here",val)
+    if k>mx:
+        print(-1)
+        return
+    ans =[]
+    for i in range(2,n+1):
+        ans.append([1,i])
+
+    d=  mx-k
+    # print(d)
+    f=False
+    for i in range(2,n):
+        if f:
+            break
+        for j in range(i+1,n+1):
+            if d==0:
+                f=True
+                break
+            ans.append([i,j])
+            d-=1
+
     
+    print(len(ans))
+
+    for i,j in ans:
+        print(i,j)
+    
+
+
 
     
     

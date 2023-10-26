@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 05/10/2023 02:03 Chennai, India
 # **/
         
 
@@ -110,23 +110,19 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
+    
+    
     n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
-    
-    print("Yes")
-    
+    a=list(si())
+    cnt0,cnt1=0,0
+    l=0
+
+    for r in range(n):
+        if a[0]=="1":
+            cnt1+=1
+        else:
+            cnt0+=1
+
 
     
     
@@ -134,7 +130,7 @@ def solve():
             
             
 def main():
-    # for i in range(ii()):
+    for i in range(ii()):
         solve()
                 
             

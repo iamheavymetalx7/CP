@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 05/10/2023 20:34 Chennai, India
+# * created: 10/10/2023 03:33 Chennai, India
 # **/
         
 
@@ -110,22 +110,49 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    n=ii()
-    a=[]
-    for _ in range(n):
-        ai,bi =mii()
-        ## units of time , deadline
-        a.append([ai,bi])
-    a.sort(key = lambda x:x[1])
-    # print(a)
-    curr = 0
-    for i in range(n):
-        curr+=a[i][0]
-        if curr>a[i][1]:
-            print("No")
-            return
     
-    print("Yes")
+    n,m = mii()
+    a = lmii()
+    # print(a)
+    brr =[]
+    for _ in range(n):
+        brr.append(list(si()))
+    sc =[]
+    for i,x in enumerate(brr):
+        curr= 0
+        for j in range(m):
+            if x[j]=="o":
+                curr+=a[j]
+        curr+=i+1
+        sc.append(curr)
+    maxi = max(sc)
+    # print(brr)
+    # print(sc)
+    # print(maxi)
+    
+    for i in range(n):
+        arr = []
+        for j in range(m):
+            what = -1 if brr[i][j]=="x" else 1
+            arr.append([what,a[j]])
+        arr.sort(key = lambda x:(x[0],-x[1]))
+        # print(i,"indexxx")
+        curr_sc = sc[i]
+        cnt=0
+        # print(arr)
+        if curr_sc<maxi:
+            for el,add in arr:
+                curr_sc+=add
+                cnt+=1
+                # print(curr_sc,cnt)
+                if curr_sc>=maxi:
+                    break
+
+        print(cnt)
+        
+
+
+
     
 
     
