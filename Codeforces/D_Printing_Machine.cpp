@@ -12,34 +12,45 @@ using namespace std;
 #define ld long double
 #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 int inf = 1000000000000000000;
+using ii = pair<int, int>;
+
+
 
 void solve()
 {
     int n;
-    string s;
-    cin >>n;
-    cin>>s;
-
-    vector<int> cnt(10);
-    vector<int> cnt2(10);
-
-    for (auto e:s) cnt[e-'0']++;
-
-    int ans =0;
-    for (int i=0;i<=1e7;i++){
-        int x;
-        x=i*i;
-        fill(cnt2.begin(),cnt2.end(),0);
-
-        string t = to_string(x);
-
-        for(auto e: t) cnt2[e-'0']++;
-        cnt2[0] = max(cnt[0],cnt2[0]);
-        if (cnt==cnt2) ans++;
+    cin>>n;
+    vector<pair<int,int>> vec;
+    for (int i=0;i<n;i++){
+        int a,b;
+        cin>>a>>b;
+        vec.pb({a,a+b});
     }
 
-    cout<<ans<<"\n";
-    
+    sort(vec.begin(),vec.end());
+
+    priority_queue<int,vector<int>, greater<>> pq;
+
+    int it=0;
+    int ans =0;
+
+    for(int i=0;;i++){
+        if(pq.empty()){
+            if (it==n) break;
+            i = vec[it].first;
+        }
+        while(it<n && vec[it].first==i){
+            pq.push(vec[it++].second);
+        }
+
+        while(!pq.empty() && pq.top()<i) pq.pop();
+        if(!pq.empty()){
+            pq.pop();
+            ans++;
+        }
+    }
+
+    cout<<ans<<endl;
 
 }
 

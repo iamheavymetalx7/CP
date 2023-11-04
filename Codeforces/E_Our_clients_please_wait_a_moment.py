@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/10/2023 15:18 Chennai, India
+# * created: 20/09/2023 14:56 Chennai, India
 # **/
         
 
@@ -106,46 +106,51 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
+from heapq import *
 def solve():
     import sys
     input =sys.stdin.buffer.readline
+
+    n,a,b,c = mii()
+
+    d= []
+    for _ in range(n):
+        d.append(lmii())
     
-    k =ii()
+    dis0= [1<<63 for _ in range(n)]
 
-    l=0
-    r=99
-
-    def check(x):
-        x=  bin(x)[2:]
-        n = len(x)
-        print(x)
-        x=x[::-1]
-        cnt=0
-        print(x)
-        for i in range(n):
-            if i%2==0 and x[i]=="1":
-                cnt+=pow(2,i//2) *(((i//2)*(i//2+1))//2)
-        if cnt<k:
-            return False
-        return True
+    dis1= [1<<63 for _ in range(n)]
         
 
-    while r-l>1:
-        mid = (l+r)//2
-        print(mid, "middddd")
-        if check(mid):
-            r=mid
+    dis0[0]=0
+    dis1[0]=0
+
+    q=[(0,0,1),(0,0,0)]
+    ## time,place,car (0) /train (1)
+
+    while q:
+        t,p,m = heappop(q)
+        print(t,p,m)
+        if m==0:
+            if dis0[p]!=t:
+                continue
+            for i in range(n):
+                if dis0[i]>t+d[p][i]*a:
+                    dis0[i]=t+d[p][i]*a
+                    heappush(q,(dis0[i],i,0))
+            for i in range(n):
+                if dis1[i]>t+d[p][i]*b+c:
+                    dis1[i]=t+d[p][i]*b+c;
+                    heappush(q,(dis1[i],i,1))
+        
         else:
-            l=mid
-
-
-    
-
-    
-    
-        
-            
+            if dis1[p]!=t:
+                continue
+            for i in range(n):
+                if dis1[i]>t+d[p][i]*b+c:
+                    dis1[i]=t+d[p][i]*b+c;
+                    heappush(q,(dis1[i],i,1))
+    print(min(dis0[-1],dis1[-1]))
             
 def main():
     # for i in range(ii()):

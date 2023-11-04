@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/10/2023 15:18 Chennai, India
+# * created: 20/09/2023 14:56 Chennai, India
 # **/
         
 
@@ -12,7 +12,7 @@
 from __future__ import division, print_function
 
 import os,sys
-#sys.setrecursionlimit(9*10**8)
+# sys.setrecursionlimit(9*10**8)
 from io import BytesIO, IOBase
 
 if sys.version_info[0] < 3:
@@ -42,6 +42,7 @@ i2c = lambda n: chr(ord('a') + n)
 c2i = lambda c: ord(c) - ord('a')
 
 import threading
+
 def dmain():
     sys.setrecursionlimit(1000000)
     threading.stack_size(1024000)
@@ -107,44 +108,26 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+sys.setrecursionlimit(200007)
+
+
+def suffix_sum(A, N, M):
+    if M <= 1:
+        return A[N-1]
+    x = A[N-M] + suffix_sum(A , N , M - 1)
+    return x
+
+
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    k =ii()
-
-    l=0
-    r=99
-
-    def check(x):
-        x=  bin(x)[2:]
-        n = len(x)
-        print(x)
-        x=x[::-1]
-        cnt=0
-        print(x)
-        for i in range(n):
-            if i%2==0 and x[i]=="1":
-                cnt+=pow(2,i//2) *(((i//2)*(i//2+1))//2)
-        if cnt<k:
-            return False
-        return True
-        
-
-    while r-l>1:
-        mid = (l+r)//2
-        print(mid, "middddd")
-        if check(mid):
-            r=mid
-        else:
-            l=mid
+    n,m=mii()
+    a=lmii()
+    # print(sum(a))
 
 
-    
-
-    
-    
-        
+    print(suffix_sum(a,n,m))
             
             
 def main():

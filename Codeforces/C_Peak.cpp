@@ -12,33 +12,31 @@ using namespace std;
 #define ld long double
 #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
 int inf = 1000000000000000000;
+using ii = pair<int, int>;
 
 void solve()
 {
-    int n;
-    string s;
-    cin >>n;
-    cin>>s;
 
-    vector<int> cnt(10);
-    vector<int> cnt2(10);
-
-    for (auto e:s) cnt[e-'0']++;
-
-    int ans =0;
-    for (int i=0;i<=1e7;i++){
-        int x;
-        x=i*i;
-        fill(cnt2.begin(),cnt2.end(),0);
-
-        string t = to_string(x);
-
-        for(auto e: t) cnt2[e-'0']++;
-        cnt2[0] = max(cnt[0],cnt2[0]);
-        if (cnt==cnt2) ans++;
+    int n,m;
+    cin>>n>>m;
+    vector<int> vec(n);
+    for(int i=0;i<n;i++)
+    {cin>>vec[i];
     }
+    sort(vec.begin(),vec.end());
 
-    cout<<ans<<"\n";
+
+    int j=0;
+    int ans=0;
+
+    for(int i=0;i<n;i++){
+        while (j<n && vec[j]<(vec[i]+m)){
+            j++;
+        }
+        ans = max(ans,j-i);
+    }
+    
+    cout<<ans<<endl;
     
 
 }

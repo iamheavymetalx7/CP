@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 28/10/2023 15:18 Chennai, India
+# * created: 01/11/2023 18:45 Chennai, India
 # **/
         
 
@@ -111,36 +111,20 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    k =ii()
-
-    l=0
-    r=99
-
-    def check(x):
-        x=  bin(x)[2:]
-        n = len(x)
-        print(x)
-        x=x[::-1]
-        cnt=0
-        print(x)
-        for i in range(n):
-            if i%2==0 and x[i]=="1":
-                cnt+=pow(2,i//2) *(((i//2)*(i//2+1))//2)
-        if cnt<k:
-            return False
-        return True
-        
-
-    while r-l>1:
-        mid = (l+r)//2
-        print(mid, "middddd")
-        if check(mid):
-            r=mid
-        else:
-            l=mid
-
-
     
+    n=ii()
+
+    def isLike(x):
+        x = str(x)
+        if int(x[0])*int(x[1])==int(x[2]):
+            return True
+        return False
+
+    for i in range(n,920):
+        if isLike(i):
+            print(i)
+            break
+
 
     
     

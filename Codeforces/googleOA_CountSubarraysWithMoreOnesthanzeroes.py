@@ -43,7 +43,6 @@ def SubarraysWithMoreOnesThanZeroes(nums):
             curr-=1
 
         ans= ans + Fenwick.query(calc_idx(curr)-1)
-        ans%=MOD
         Fenwick.update(calc_idx(curr),1)
     
     return (ans)
