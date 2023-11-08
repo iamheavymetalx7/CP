@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 07/11/2023 22:56 Chennai, India
+# * created: 07/11/2023 22:45 Chennai, India
 # **/
         
 
@@ -106,34 +106,17 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-dp =[-1 for _ in range(27)]
-dp[0]=1
-for i in range(1,27):
-    dp[i]=i*dp[i-1]
-
-print(dp)
-    
-
-
 
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    s=list(si())
-
-    cnt=0
-    prev =-1
-    ans =0
-    for x in s:
-        if x==".":
-            cnt+=1
-            ans += 0
-
-
-
     
+    n,k =mii()
+    a =[]
+    for _ in range(n):
+        a.append(si())
+    print(a)
 
     
     

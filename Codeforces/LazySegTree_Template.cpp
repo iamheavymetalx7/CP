@@ -129,7 +129,7 @@
                 cin>>l>>r;
                 cout<<st1.query(0,0,n-1,l,r)<<endl;
             
-            }
+            } 
             else{
                 int l,r,val;
                 cin>>l>>r>>val;

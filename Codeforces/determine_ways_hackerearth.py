@@ -111,7 +111,7 @@ dp[0]=1
 for i in range(1,27):
     dp[i]=i*dp[i-1]
 
-print(dp)
+# print(dp)
     
 
 
@@ -123,16 +123,70 @@ def solve():
     n=ii()
     s=list(si())
 
-    cnt=0
-    prev =-1
-    ans =0
-    for x in s:
+
+    if n>26:
+        print(0)
+        return
+
+    cnt=1 if s[0]=="." else 0
+    prev = -1 if s[0]=="." else ord(s[0])-ord('a')
+    # print(prev)
+    ans = 1
+    for i,x in enumerate(s[1:]):
         if x==".":
             cnt+=1
-            ans += 0
+            if cnt>26:
+                print(0)
+                return
+            
+            
+        else:
+            if prev==-1:
+                val = ord(x)-ord('a')
 
+                ans *= dp[val]//(dp[val-cnt]*dp[cnt])
 
+            else:
 
+                val = ord(x)-ord('a')-prev-1
+                if cnt>0:
+                    ans *= dp[val]//(dp[val-cnt]*dp[cnt])
+            prev = ord(x)-ord('a')
+            cnt=0
+    
+    if cnt>0:
+        val = ord('z')-ord('a')-prev
+        # print(val)
+        ans*= dp[val]//(dp[val-cnt]*dp[cnt])
+
+    print(ans)
+            
+
+# 2
+# 5
+# d.g.i
+# 3
+# a.b
+
+# 4
+# 2 
+# .a
+# 3
+# .b.
+# 4
+# a.c.
+# 7
+# abcw...
+
+# 4
+# 4
+# i..u
+# 8
+# a.c.e.gz
+# 9
+# a.b.c.fz
+# 6
+# a.ln.o
     
 
     

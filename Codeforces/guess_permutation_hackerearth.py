@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 07/11/2023 22:56 Chennai, India
+# * created: 08/11/2023 14:21 Chennai, India
 # **/
         
 
@@ -106,34 +106,158 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-dp =[-1 for _ in range(27)]
-dp[0]=1
-for i in range(1,27):
-    dp[i]=i*dp[i-1]
-
-print(dp)
-    
-
-
 
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    s=list(si())
+    n =ii()
+    a= lmii()
 
-    cnt=0
-    prev =-1
-    ans =0
-    for x in s:
-        if x==".":
-            cnt+=1
-            ans += 0
+    cf = defaultdict(list)
+    for i,x in enumerate(a):
+        cf[x].append(i+1)
 
+    idx=-1  
+    perm = [0 for _ in range(n)]
+    
+    for i in range(n-1,-1,-1):
+        if a[i]==0:
+            idx=i
+            perm[i]=n
+            break
+    left = set(i+1 for i in range(idx))
+    right = set(i+1 for i in range(idx,n-1))
+    tot = set(i for i in range(1,n))
+    # print(tot)
+
+    curr = idx
+
+    for i in range(curr-1,-1,-1):
+        if a[i]==0:
+            perm[i]=curr
+            left.discard(curr)
+            tot.discard(curr)
+            curr=i
+    # print(perm)
+            
+    # for i in range(n-1,idx+1,-1):
+    #     # print(a[i],idx)
+    #     if a[i]==idx+1:
+    #         perm[i]=n-1
+    #         right.discard(n-1)
+    #         tot.discard(n-1)
+
+    #         break
+    # print(perm,"here")
+    
+    for i in range(n):
+        if perm[i]==0:
+            if len(cf[a[i]])==1 and perm[a[i]-1]!=0:
+                perm[a[i]] =  perm[a[i]-1]-1
+                tot.discard(perm[a[i]-1]-1)
+
+    # print(perm)
+    # print(left)
+    # print(tot)
+    total = sorted(tot)
+    # print(total)
+    j=0
+    for i in range(n):
+        if perm[i]==0:
+            perm[i]=total[j]
+            j+=1
+            if perm[i]>perm[a[i]-1] and a[i]!=0:
+                perm[i],perm[a[i]-1] = perm[a[i]-1],perm[i]
+            # print(perm,"iiii")
+    # print(perm)
+
+
+    for i in range(n):
+
+        while perm[i]>perm[a[i]-1] and a[i]!=0:
+            # print(i,perm[i],perm[a[i]-1])
+            perm[i],perm[a[i]-1] = perm[a[i]-1],perm[i]
+            # print(perm,"duck")
+    print(perm,"fin")
+    print("*"*20)
+
+
+
+# 12
+# 0 0 2 3 0 5 0 7 8 8 10 7
+# 10
+# 0 0 0 0 4 4 6 6 8 8
+# 8
+# 0 0 2 2 2 2 0 7
+# 12
+# 0 0 2 0 4 5 0 7 7 7 10 10
+
+# 1
+# 15
+# 0 1 2 3 3 3 3 0 8 9 10 10 9 9 0
+
+
+
+    # print(right)
+    # rem_left = sorted(left)
+    # jr=len(rem_left)-1
+    # jl=0
+    # rem_right = sorted(right)
+    # kr = len(rem_right)-1
+    # kl=0
+    # leftseen = set()
+    # for i in range(idx,-1,-1):
+
+    #     if perm[a[i]-1]!=0 and a[i] and i not in leftseen:
+    #         print(i,"here, already taken",rem_left[jr])
+    #         leftseen.add(a[i]-1)
+    #         perm[a[i]]=rem_left[jr]
+    #         jr-=1
+    #         print(perm)
+    #     if perm[a[i]-1]==0 and a[i] and i not in leftseen:
+    #         print(i,"ahem ahem",rem_left[jr])
+    #         leftseen.add(a[i]-1)
+    #         perm[a[i]-1]=rem_left[jr]
+    #         jr-=1
+    #         print(perm)
+
+
+    # print(perm)
+    # for i in range(idx+1,n-1):
+
+    #     if perm[a[i]-1]!=0 and a[i] and (a[i]-1) not in rightseen:
+    #         print(i,"here, already taken",rem_right[kl],a[i])
+    #         rightseen.add(a[i]-1)
+    #         perm[a[i]]=rem_right[kl]
+    #         print(perm)
+    #         kl+=1
+    #     elif perm[a[i]-1]==0 and a[i] and (a[i]-1) not in rightseen:
+    #         print(i,"nottaken",rem_right[kr])
+    #         rightseen.add(a[i]-1)
+    #         perm[a[i]-1]=rem_right[kr]
+    #         kr-=1
+    #         print(perm)
 
 
     
+    
+    # # print(perm)
+
+    
+
+    # for i in range(idx+1,-1,-1):
+    #     if perm[i]==0:
+    #         perm[i] = rem_left[jl]
+    #         jl+=1
+    # # print(perm,"******")
+    
+    # # print(rem_right)
+    # for i in range(idx+1,n):
+    #     if perm[i]==0:
+    #         perm[i] = rem_right[kl]
+    #         kl+=1
+    # print(perm,"ffffffffffffffffffffffffff")
 
     
     
