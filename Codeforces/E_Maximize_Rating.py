@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 00:14 Chennai, India
+# * created: 09/11/2023 13:15 Chennai, India
 # **/
         
 
@@ -111,29 +111,38 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    s=si()
-    n = len(s)
-    cnt0,cnt1=0,0
-    ans =0
-    dp =[0 for _ in range(n)]
-    for i in reversed(range(n)):
-        if i==n-1:
-            dp[i]=1
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
-        elif i==n-2:
-            dp[i]=2
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
-        else:
-            dp[i]=dp[i+1]+dp[i+2]
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
-            dp[i]+=(cnt0*cnt1)
-    print(dp[0])
+    n=ii()
+    p = lmii()
+    p9 =[1]
+    for _ in range(n):
+        p9.append(p9[-1]*(0.9))
+    for i in range(1,len(p9)):
+        p9[i]+=p9[i-1]
+
+    p9.insert(0,0)
+
+    # print(p9)
+
+    dp =[-int(1e18) for  _ in range(n+1)]
+    dp[0]=0
+
+    for i in range(0,n):
+        ndp = dp[:]
+        for j in range(0,i+1):
+            # print(j,"here")
+            if j+1<=n:
+                ndp[j+1] = max(ndp[j+1],dp[j]*(0.9)+p[i])
+        
+        dp =ndp[:]
 
 
-    
+    ans = -int(1e18)
+    for i in range(1,n+1):
+        # print(p9[i])
+        rem = 1200.0/sqrt(i)
+        # print(  dp[i]/p9[i] - rem)
+        ans = max(ans, dp[i]/p9[i] - rem)
+    print('%.15f' % ans)  
 
     
     

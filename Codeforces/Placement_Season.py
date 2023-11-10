@@ -124,6 +124,7 @@ def modfac(n, MOD):
     invs = [1] * (n + 1)
     invs[n] = inv
     for m in range(n, 1, -1):
+        print(m)
         inv *= m
         inv %= MOD
         invs[m - 1] = inv
