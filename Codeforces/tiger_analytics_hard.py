@@ -120,8 +120,8 @@ def solve():
     dp =[0 for _ in range(n)]
     for i in reversed(range(n)):
         if i==n-1:
-            dp[i]=1
-            cnt0+=s[i]=="0"
+            dp[i]=1;
+            cnt0+=s[i]=="0";
             cnt1+=s[i]=="1"
         elif i==n-2:
             dp[i]=2
