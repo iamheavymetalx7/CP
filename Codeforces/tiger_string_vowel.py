@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 00:14 Chennai, India
+# * created: 11/11/2023 00:31 Chennai, India
 # **/
         
 
@@ -110,34 +110,21 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
     s=si()
-    n = len(s)
-    print(n)
-    cnt0,cnt1=0,0
-    mod = int(1e9)+7
-    ans =0
-    dp =[0 for _ in range(n)]
-    for i in reversed(range(n)):
-        if i==n-1:
-            dp[i]=1
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
-        elif i==n-2:
-            dp[i]=2
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
+    print(s)
+    v='aeiou'
+    st =""
+    n=len(s);cnt=0
+    for i in range(n):
+        if s[i] in v:
+            cnt+=1
         else:
-            dp[i]=dp[i+1]+dp[i+2]
-            dp[i]%=mod;
-            cnt0+=s[i]=="0"
-            cnt1+=s[i]=="1"
-            dp[i]+=(cnt0*cnt1)
-            dp[i]%=mod
-    print(dp[0])
-
-
-    
+            if cnt>=3:
+                st+=s[i]
+            else:
+                st+=s[i-cnt:i+1]
+            cnt=0
+    print(st)
 
     
     
