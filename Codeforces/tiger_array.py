@@ -111,7 +111,13 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    def clockRotate(N,M,A):
+    N,M= mii()
+    a=[]
+    for _ in range(N):
+        a.append(lmii())
+    # print(a)
+    
+    def clockwise(N,M,A):
         blank = [[0]*(N) for _ in range(M)]
 
         for i in range(M):
@@ -120,15 +126,16 @@ def solve():
         
         for row in blank:
             row.reverse()
+            
         return blank
-    
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
-    
+
+
+    arr = (clockwise(N,M,a))
+    for row in arr:
+        for x in row:
+            print(x,end=" ")
+        print()
+
 
     
     

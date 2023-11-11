@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 09:51 Chennai, India
+# * created: 27/07/2023 00:29 Chennai, India
 # **/
         
 
@@ -12,7 +12,6 @@
 from __future__ import division, print_function
 
 import os,sys
-#sys.setrecursionlimit(9*10**8)
 from io import BytesIO, IOBase
 
 if sys.version_info[0] < 3:
@@ -21,7 +20,6 @@ if sys.version_info[0] < 3:
 
 from bisect import bisect_left as lower_bound, bisect_right as upper_bound 
 
-from math import sqrt
 def lmii():
     return list(map(int,input().split()))
 
@@ -107,28 +105,81 @@ def tr(n):
         
 from collections import Counter, defaultdict, deque
 
+
+
+class UnionFind:
+    # UnionFind　初期化 使う要素の数(n)をここで宣言する。Selfというインスタンスを作って値を入れる
+    def __init__(self,n):
+        self.n=n
+        self.parent_size=[-1]*n
+ 
+    def leader(self,a):#グループリーダーの確認
+        if self.parent_size[a]<0: return a
+        self.parent_size[a]=self.leader(self.parent_size[a])
+        return self.parent_size[a]
+ 
+    def merge(self,a,b):#グループの併合を要素aとbで行う
+        x,y=self.leader(a),self.leader(b)
+        if x == y: return 
+        if abs(self.parent_size[x])<abs(self.parent_size[y]):x,y=y,x
+        self.parent_size[x] += self.parent_size[y]
+        self.parent_size[y]=x
+        return 
+ 
+    def same(self,a,b):#グループが同一が同かa,bで確認
+        return self.leader(a) == self.leader(b)
+ 
+    def size(self,a):#所属するグループの要素の数の確認
+        return abs(self.parent_size[self.leader(a)])
+ 
+    def groups(self):#グループ全体の確認
+        result=[[] for _ in range(self.n)]
+        for i in range(self.n):
+            result[self.leader(i)].append(i)
+        return [r for r in result if r != []]
+from heapq import *
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    def clockRotate(N,M,A):
-        blank = [[0]*(N) for _ in range(M)]
+    n,m,mod=mii()
 
-        for i in range(M):
-            for j in range(N):
-                blank[i][j] = A[j][i]
-        
-        for row in blank:
-            row.reverse()
-        return blank
+    adj=defaultdict(list)
+    arr=[]
+    for _ in range(m):
+        u,v,w = mii()
+        u-=1;
+        v-=1;
+        arr.append([u,v,w])
+        adj[u].append([v,w])
+        adj[v].append([u,w])
     
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
+    disjoint = UnionFind(n)
+
+    edges=[]
+    for x in arr:
+        edges.append([x[2]%mod,x[0],x[1]])
+    edges.sort()    
+
+
+    mstwt =0
+
+    for x in edges:
+        wt = x[0]
+        u,v =x[1:]
+
+        if disjoint.same(u,v):
+            continue
+        else:
+            mstwt+=wt
+            mstwt%=mod
+            disjoint.merge(u,v)
     
+    print(mstwt%mod)
+    
+
+
+
 
     
     
@@ -136,7 +187,7 @@ def solve():
             
             
 def main():
-    # for i in rang.e(ii()):
+    # for i in range(ii()):
         solve()
                 
             

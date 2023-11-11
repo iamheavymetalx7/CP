@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 09:51 Chennai, India
+# * created: 11/11/2023 17:51 Chennai, India
 # **/
         
 
@@ -111,23 +111,20 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    def clockRotate(N,M,A):
-        blank = [[0]*(N) for _ in range(M)]
+    ## song: mujhe yar nahi aata, ghar baar nazar nahi aata
+    s=list(si())
+    st=[]
+    n=len(s)
+    for i in range(n):
+        st.append(s[i])
+        # print(st)
+        # if len(st)>=3:
+            # print(st[-1],st[-2],st[-3],"ahahaha")
+        while len(st)>=3 and st[-1]=="C" and st[-2]=="B" and st[-3]=="A":
+            for i in range(3):
+                st.pop()
 
-        for i in range(M):
-            for j in range(N):
-                blank[i][j] = A[j][i]
-        
-        for row in blank:
-            row.reverse()
-        return blank
-    
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
+    print(''.join(st))         
     
 
     
@@ -136,7 +133,7 @@ def solve():
             
             
 def main():
-    # for i in rang.e(ii()):
+    # for i in range(ii()):
         solve()
                 
             

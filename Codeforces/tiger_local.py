@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 09:51 Chennai, India
+# * created: 11/11/2023 09:26 Chennai, India
 # **/
         
 
@@ -111,23 +111,21 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    def clockRotate(N,M,A):
-        blank = [[0]*(N) for _ in range(M)]
+    a=lmii()
+    def maxsum(n,a):
+        ans=0
+        for i in range(1,n):
+            local = 0
+            for j in range(i-1,n,i+1):
+                local+=a[j]
+            
+            ans= max(ans,local)
+        return ans
 
-        for i in range(M):
-            for j in range(N):
-                blank[i][j] = A[j][i]
-        
-        for row in blank:
-            row.reverse()
-        return blank
-    
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
+
+    ans = maxsum(len(a),a)
+    print(ans)
+
     
 
     
@@ -136,7 +134,7 @@ def solve():
             
             
 def main():
-    # for i in rang.e(ii()):
+    # for i in range(ii()):
         solve()
                 
             

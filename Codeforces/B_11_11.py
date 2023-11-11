@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 09:51 Chennai, India
+# * created: 11/11/2023 17:31 Chennai, India
 # **/
         
 
@@ -111,23 +111,28 @@ def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    def clockRotate(N,M,A):
-        blank = [[0]*(N) for _ in range(M)]
-
-        for i in range(M):
-            for j in range(N):
-                blank[i][j] = A[j][i]
-        
-        for row in blank:
-            row.reverse()
-        return blank
+    n=ii()
+    a=lmii()
+    dic=defaultdict(list)
+    for i in range(1,10):
+        dic[i].append(i*1)
     
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
+        dic[i].append(i*11)
+    
+    for idx,i in enumerate([11,22,33,44,55,66,77,88,99]):
+        dic[i].append(idx+1)
+        dic[i].append(i)
+    
+
+    cnt=0
+    for i in range(1,n+1):
+        # print(i,"here")
+        for j in dic[i]:
+            if j<=a[i-1]:
+                # print(j) 
+                cnt+=1
+    print(cnt)
+
     
 
     
@@ -136,7 +141,7 @@ def solve():
             
             
 def main():
-    # for i in rang.e(ii()):
+    # for i in range(ii()):
         solve()
                 
             

@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 11/11/2023 09:51 Chennai, India
+# * created: 11/11/2023 09:33 Chennai, India
 # **/
         
 
@@ -110,33 +110,33 @@ from collections import Counter, defaultdict, deque
 def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
-    def clockRotate(N,M,A):
-        blank = [[0]*(N) for _ in range(M)]
+    a=lmii()
+    def isPalindrome(x):
 
-        for i in range(M):
-            for j in range(N):
-                blank[i][j] = A[j][i]
+        x=bin(x)[2:]
+
+        for i in range(len(x)//2):
+            if x[i]!=x[-i-1]:
+                return False
+        return True
+
+    def countPalindromes(n,A):
+        init = 0
+        for x in A:
+            if isPalindrome(x):
+                init+=1
         
-        for row in blank:
-            row.reverse()
-        return blank
+        return init
     
-    N,M= mii()
-    a=[]
-    for _ in range(N):
-        a.append(lmii())
-    # print(a)
-    print(clockRotate(N,M,a))
-    
-
+    ans = countPalindromes(len(a),a)
+    print(ans)
     
     
         
             
             
 def main():
-    # for i in rang.e(ii()):
+    # for i in range(ii()):
         solve()
                 
             
