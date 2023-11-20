@@ -30,6 +30,7 @@
         for(int i=n-2;i>=0;i--){
             if (vec[i]>maxMin){
                 int part = ceil(vec[i]/double(maxMin));
+                // cout<<part<<" "<<vec[i]<<" "<<i<<" "<<maxMin<<endl;
                 ops+=part-1;
                 maxMin = vec[i]/part;
             }
