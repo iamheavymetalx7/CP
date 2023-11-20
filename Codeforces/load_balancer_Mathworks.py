@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 26/09/2023 20:15 Chennai, India
+# * created: 18/11/2023 02:46 Chennai, India
 # **/
         
 
@@ -56,7 +56,6 @@ def joro(L):
 def decimalToBinary(n): return bin(n).replace("0b","")
 
 
-
 def isprime(n):
     for i in range(2,int(n**0.5)+1):
         if n%i==0:
@@ -107,58 +106,58 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
-
-'''
-link: https://docs.google.com/document/d/1ddCV9pTFFkvJRascZEU_Nckh3-nzLDet0Hj77KR6s4o/edit
-
-https://www.desiqna.in/16043/shaw-coding-question-solution-sde1-september-2023-subarrays#google_vignette
-
-
-
-'''
-
+from heapq import *
 def solve():
     import sys
     input =sys.stdin.buffer.readline
     
-    n=ii()
-    a =lmii()
+    n,m=mii()
+    a=lmii()
+    b=lmii()
 
-    b=[0]*(n+1)
-    b[0]=a[0]
-    for i in range(1,n):
-        b[i] = min(a[i],b[i-1]+a[i])
-    print(b)
-# [0, 5, -8, 2, 3, -10, 4]
-# [0, 5, -8, -6, -3, -13, -9, 0, 0, 0, 0]
-# [0, -9, -9, -6, -6, -6, 0, 0, 0, 0, 0]
-# -9 minimum
-# 24
-    c = [0]*(n+1)    
-    c[-1]=int(1e19)
-    sum_val =0
-    for i in range(n-1,-1,-1):
-        sum_val+=a[i]
-        c[i] =  min(sum_val,c[i+1])
-    print(c)
+    c =[]
+    for i in range(m):
+        c.append([a[i],b[i],i])
+    c.sort()
+
+    server =[]
+    for i in range(1,n+1):
+        heappush(server,i)
+    task=[]
+
+    to_ret = [-1 for _ in range(m)]
+
+    for at,bt,idx in (c):
+        st = at
+        fin = at+bt
+        # print(at,bt,idx,st,fin)
 
 
-    g=  int(1e20)
+        while task and task[0][0]<=st:
+            heappush(server,heappop(task)[1])
 
-    t=0
+        if server:
+            assign = heappop(server)
+            to_ret[idx] = assign
+            heappush(task,[fin,assign])
+        else:
+            continue
+    
+    print(to_ret)
 
-    for i in range(n):
-        v =  min(t,b[i])+min(t,c[i+1])
-        g=min(g,v)
-        # print(i,g)
 
     
-    # print(g)
+'''
 
-    print(sum(a)-2*g)            
+pypy code:  https://ide.usaco.guide/NjUDAB80B_pAwDQXgUM
+
+cpp code: https://ide.usaco.guide/NjU4RS8XrRJqzthmLHw
+'''
+        
+            
             
 def main():
+    for i in range(ii()):
         solve()
                 
             

@@ -50,7 +50,6 @@ Second test case:-
 The occurrence of '2' is equal to the sum of the occurrences of other elements already.
 So the answer is 6.
 
-
 Sample Input 2:-
 2
 7
