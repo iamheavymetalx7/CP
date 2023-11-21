@@ -12,6 +12,19 @@
   #define ld long double
   #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
   int inf = 1000000000000000000;
+/*
+5
+2 5 7 11 25
+26
+11010
+01011
+
+
+5
+4 3 2 1 10
+2
+
+*/
 
   using ii = pair<int, int>;
 
@@ -52,17 +65,20 @@
 			cin>>cost[i];
 		}
 
-		// for(int i=0;i<n;i++){
-		// 	cout<<cost[i]<<endl;
-		// }
+
     cin>>minWt;
 
     for(int i=1;i<n;i++){
         cost[i] =min(2*cost[i-1],cost[i]);
     }
+    for(int i=0;i<n;i++){
+        cout<<cost[i]<<" "; 
+    }
+        cout<<endl;
+
     memset(dp,-1,sizeof(dp));
     int ans = recur(n-1);
-    cout<<ans<<endl;
+    cout<<ans<<": ans"<<endl;
     
 
     
