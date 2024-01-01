@@ -1,2 +1,2 @@
 
-    for i in range(1,n):
+    elif (k>1 and jes[

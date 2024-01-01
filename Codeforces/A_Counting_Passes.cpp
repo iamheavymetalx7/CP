@@ -15,38 +15,20 @@
     using ii = pair<int, int>;
     
     void solve()
-    {
-        int n;
-        cin>>n;
+    { int n,l;
+        cin>>n>>l;
         vector<int> a(n);
+
+        int cnt=0;
+
         for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i%2==1){
-                a[i]*=-1;
+            int c;
+            cin>>c;
+            if (c>=l){
+                cnt++;
             }
         }
-
-        // for(int i=0;i<n;i++){
-        //     cout<<a[i]<<" ";
-        // }
-        // // cout<<endl;
-
-
-        map<int,int> mp;
-        mp[0]=-1;
-
-        int cur_sum =0;
-        for(int i=0;i<n;i++){
-            cur_sum+=a[i];
-            if (mp.count(cur_sum)>0){
-                cout<<"YES"<<endl;
-                return;
-            }
-            mp[cur_sum]=i;
-        }
-
-        cout<<"NO"<<endl;
-
+        cout<<cnt<<endl;
     
     
     }
@@ -54,15 +36,12 @@
     signed main()
     {
         fast
+        // int t; cin>>t; while(t--)
+    
         #ifndef ONLINE_JUDGE
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
         #endif
-
-    
-
-        int t; cin>>t; 
-        while(t--) solve();
-        return 0;        
-
+        solve();
+        return 0;
     }

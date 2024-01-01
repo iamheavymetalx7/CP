@@ -15,39 +15,29 @@
     using ii = pair<int, int>;
     
     void solve()
-    {
-        int n;
-        cin>>n;
-        vector<int> a(n);
-        for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i%2==1){
-                a[i]*=-1;
-            }
-        }
+    { int n,m;
+    cin>>n>>m;
+    vector<pair<int,pair<int,int>>> vec;
 
-        // for(int i=0;i<n;i++){
-        //     cout<<a[i]<<" ";
-        // }
-        // // cout<<endl;
-
-
-        map<int,int> mp;
-        mp[0]=-1;
-
-        int cur_sum =0;
-        for(int i=0;i<n;i++){
-            cur_sum+=a[i];
-            if (mp.count(cur_sum)>0){
-                cout<<"YES"<<endl;
-                return;
-            }
-            mp[cur_sum]=i;
-        }
-
-        cout<<"NO"<<endl;
-
+    for(int i=0;i<m;i++){
+        int ui,vi,wi;
+        cin>>ui>>vi>>wi;
+        ui--;
+        vi--;
+        vec.push_back({ui,{vi,wi}});
+        
+    }
     
+    vector<int> slowness(n);
+    for(int i=0;i<n;i++){
+        cin>>slowness[i];
+    }
+
+    vect
+
+
+
+
     
     }
     
@@ -63,6 +53,5 @@
 
         int t; cin>>t; 
         while(t--) solve();
-        return 0;        
-
+        return 0; 
     }

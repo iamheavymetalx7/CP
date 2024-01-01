@@ -13,43 +13,41 @@
     #define fast ios_base::sync_with_stdio(false), cin.tie(nullptr), cout.tie(nullptr);
     int inf = 1000000000000000000;
     using ii = pair<int, int>;
+
+    bool isSquare(int x){
+        int n = sqrt(x);
+        if (n*n ==x){
+            return true;
+        }
+        return false;
+    }
     
     void solve()
     {
-        int n;
-        cin>>n;
-        vector<int> a(n);
-        for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i%2==1){
-                a[i]*=-1;
-            }
+        int k;
+        cin>>k;
+        vector<int> arr(k);
+        int sum =0;
+        for(int i=0;i<k;i++){
+            cin>>arr[i];
+            sum+=arr[i];
+
         }
+        // cout<<sum<<endl;
 
-        // for(int i=0;i<n;i++){
-        //     cout<<a[i]<<" ";
-        // }
-        // // cout<<endl;
-
-
-        map<int,int> mp;
-        mp[0]=-1;
-
-        int cur_sum =0;
-        for(int i=0;i<n;i++){
-            cur_sum+=a[i];
-            if (mp.count(cur_sum)>0){
-                cout<<"YES"<<endl;
-                return;
-            }
-            mp[cur_sum]=i;
+        if(isSquare(sum)){
+            cout<<"Yes"<<endl;
         }
+        else{
+            cout<<"No"<<endl;
+        }
+        
 
-        cout<<"NO"<<endl;
 
     
     
     }
+    
     
     signed main()
     {

@@ -16,38 +16,11 @@
     
     void solve()
     {
-        int n;
-        cin>>n;
-        vector<int> a(n);
-        for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i%2==1){
-                a[i]*=-1;
-            }
-        }
-
-        // for(int i=0;i<n;i++){
-        //     cout<<a[i]<<" ";
-        // }
-        // // cout<<endl;
-
-
-        map<int,int> mp;
-        mp[0]=-1;
-
-        int cur_sum =0;
-        for(int i=0;i<n;i++){
-            cur_sum+=a[i];
-            if (mp.count(cur_sum)>0){
-                cout<<"YES"<<endl;
-                return;
-            }
-            mp[cur_sum]=i;
-        }
-
-        cout<<"NO"<<endl;
-
+    int n;
+    cin>>n;
     
+
+
     
     }
     
@@ -63,6 +36,5 @@
 
         int t; cin>>t; 
         while(t--) solve();
-        return 0;        
-
+        return 0; 
     }

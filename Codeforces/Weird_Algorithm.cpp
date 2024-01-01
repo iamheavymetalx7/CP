@@ -18,34 +18,26 @@
     {
         int n;
         cin>>n;
-        vector<int> a(n);
-        for(int i=0;i<n;i++){
-            cin>>a[i];
-            if(i%2==1){
-                a[i]*=-1;
+        vector<int> a;
+        a.push_back(n);
+        while (n!=1){
+            if (n%2){
+                n=n*3+1;
+                a.push_back(n);
+            }
+            else{
+            n/=2;
+            a.push_back(n);
             }
         }
 
-        // for(int i=0;i<n;i++){
-        //     cout<<a[i]<<" ";
-        // }
-        // // cout<<endl;
+        // a.push_back(1);
 
-
-        map<int,int> mp;
-        mp[0]=-1;
-
-        int cur_sum =0;
-        for(int i=0;i<n;i++){
-            cur_sum+=a[i];
-            if (mp.count(cur_sum)>0){
-                cout<<"YES"<<endl;
-                return;
-            }
-            mp[cur_sum]=i;
+        for(auto x: a){
+            cout<<x<<" ";
         }
+        cout<<endl;
 
-        cout<<"NO"<<endl;
 
     
     
@@ -54,15 +46,12 @@
     signed main()
     {
         fast
+        // int t; cin>>t; while(t--)
+    
         #ifndef ONLINE_JUDGE
         freopen("input.txt","r",stdin);
         freopen("output.txt","w",stdout);
         #endif
-
-    
-
-        int t; cin>>t; 
-        while(t--) solve();
-        return 0;        
-
+        solve();
+        return 0;
     }
