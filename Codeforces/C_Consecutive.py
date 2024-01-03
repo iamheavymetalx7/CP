@@ -134,7 +134,6 @@ def solve():
     for a,b in que:
         a-=1
         b-=1
-        # print(pref[b],"hehehe")
         
         print(pref[b] - (pref[a]))
 
