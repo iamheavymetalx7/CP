@@ -1,3 +1,9 @@
+/*
+
+reference  : https://leetcode.com/problems/non-overlapping-intervals/
+
+*/
+
 #include <bits/stdc++.h>
     using namespace std;
     #define int long long
@@ -19,14 +25,34 @@
     int n;
     cin>>n;
 
-    vector<pair<int,int>> times(n);
+    vector<pair<int,int>> times;
     for(int i=0;i<n;i++){
         int a,b;
         cin>>a>>b;
         times.push_back({a,b});
     }
 
-    
+    sort(times.begin(),times.end());
+    int cnt = 0;
+    int end = times[0].second;
+
+    // for (int i = 0; i < n; i++) {
+    //     cout << times[i].first << " " << times[i].second << endl;
+    // }
+
+    for(int i=1;i<n;i++){
+        if (end<=times[i].first){
+            end = times[i].second;
+        }
+        else{
+            cnt++;
+            end = min(end, times[i].second);
+        }
+    }
+    // cout<<cnt<<endl;
+    cout<<n-cnt<<endl;
+
+
 
 
 
