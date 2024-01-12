@@ -1,2 +1,1 @@
-
-    elif (k>1 and jes[
+    # for i in range(ii()):
