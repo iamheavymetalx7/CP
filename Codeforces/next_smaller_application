@@ -1,0 +1,30 @@
+def solve(n,a):
+    next_smaller = [n for _ in range(n)]
+
+    st =[]
+
+    for i in range(n):
+        while(st and a[st[-1]]>a[i]):
+            st_top = st.pop();
+            
+            next_smaller[st_top]=i
+        st.append(i)
+    print(next_smaller)
+
+    if next_smaller[n-2]!=n-1:
+        return(0)
+        
+    cnt=0
+    i=0
+    while i<n:
+        if next_smaller[i]>=n:
+            i+=1
+        else:
+            i=next_smaller[i]+1
+            cnt+=1
+    return (cnt)
+
+print(solve(8,[4,3,6,5,3,4,7,1]))
+print(solve(5,[8,5,4,7,2]))
+print(solve(6,[1,2,3,2,6,3]))
+print(solve(4,[1,2,3,4]))

@@ -19,15 +19,38 @@
         int n;
         cin>>n;
         // cout<<n<<endl;
-        vector<vector<int>> vec(3,vector<int>(n,0));
-
-
-        for(int i=0;i<3;i++){
-            for(int j=0;j<n;j++){
-                cin>>vec[i][j];
-            }
+        vector<int> q(n,0),a(n,0),b(n,0);
+        for(int i=0;i<n;i++){
+            cin>>q[i];
         }
         
+            for(int i=0;i<n;i++){
+            cin>>a[i];
+        }
+            for(int i=0;i<n;i++){
+            cin>>b[i];
+        }
+
+        int inf = 1e18;
+        int ans = 0, maxi=0;
+
+        for(int i=0;i<n;i++){
+            maxi =max(maxi,q[i]);
+        }
+        for(int x=0;x<=maxi;x++){
+            int y = inf;
+            for(int i=0;i<n;i++){
+                if (q[i]<a[i]*x){
+                    y=-inf;
+                }
+                else if (b[i]>0){
+                    y =min(y,(q[i]-a[i]*x)/b[i]);
+                }
+            }
+            ans = max(ans,x+y);
+        }        
+
+        cout<<ans<<endl;
 
     
     }

@@ -1,0 +1,22 @@
+def solve(n,a):
+    i=0
+    val =0
+    ans =0
+    while i<n-1:
+        if a[i]>a[i+1]:
+            preval = val
+
+            val += a[i]-a[i+1]
+            ans+=(val-preval)
+
+            i+=1
+            while i<n-1 and (a[i+1]+val >= a[i]+val):
+                i+=1
+        else:
+            i+=1
+    return ans
+
+print(solve(4,[3,5,2,3]))
+print(solve(3,[3,2,1]))
+print(solve(5,[3,4,1,6,2]))
+print(solve(4,[4,3,2,1]))
