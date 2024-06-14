@@ -41,14 +41,16 @@ using ii = pair<int, int>;
     
 void solve()
 {
-    int x,y;
-    cin>>x>>y;
-    if (x<y){
-        cout<<"YES";
-    }
-    else{cout<<"NO";}
-  
- 
+  int x,y;
+  cin>>x>>y;
+
+  int curr = 10*x;
+//   y = (curr+ 100*tt)/(tt+10);
+//  y*tt+y*10 = curr + 100*tt
+// curr-y*10 /(100-y)
+
+int val = ceil((y*10-curr +100-y-1)/(100-y));
+cout<<val<<endl;
 
 }
 

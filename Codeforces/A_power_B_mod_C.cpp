@@ -41,13 +41,14 @@ using ii = pair<int, int>;
     
 void solve()
 {
-    int x,y;
-    cin>>x>>y;
-    if (x<y){
-        cout<<"YES";
-    }
-    else{cout<<"NO";}
-  
+  int n;
+  cin>>n;
+  if(n==2){
+    cout<<"4 16"<<endl;
+  }
+  else{
+    cout<<2*n<<" "<<n*n<<endl;
+  }
  
 
 }

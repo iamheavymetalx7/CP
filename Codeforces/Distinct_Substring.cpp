@@ -41,13 +41,20 @@ using ii = pair<int, int>;
     
 void solve()
 {
-    int x,y;
-    cin>>x>>y;
-    if (x<y){
-        cout<<"YES";
-    }
-    else{cout<<"NO";}
-  
+  int n,k;
+cin>>n>>k;
+if (k==1){
+    cout<<"YES"<<endl;
+    return;
+}
+int reqd_ones = k-1;
+int reqd_zeroes = (k*(k+1))/2;
+if ((reqd_ones+reqd_zeroes)<=n){
+    cout<<"YES\n";
+    return;
+}
+cout<<"NO"<<endl;
+
  
 
 }
