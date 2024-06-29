@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 
 // sparse table 
+
+//
+
+//
+// /
+// /
+// /
+
+
+// /
+// /
+
+// /
     using namespace std;
     #define int long long
     #define pi (3.141592653589)
