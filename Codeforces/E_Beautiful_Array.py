@@ -1,6 +1,6 @@
 # /**
 # * author:Hisoka-TheMagician
-# * created: 23/06/2024 21:36 Chennai, India
+# * created: 29/06/2024 19:27 Chennai, India
 # **/
         
 
@@ -106,78 +106,59 @@ def tr(n):
 
         
 from collections import Counter, defaultdict, deque
-
-def solve(xx):
+import random
+def solve():
     import sys
     input =sys.stdin.buffer.readline
-    
+    r = random.randint(0,1<<32)
+
     n,kk =mii()
     a =lmii()
-    dic =defaultdict(int)
+    dic = defaultdict(list)
+    ans =0
     for x in a:
-        dic[x]+=1
-    
-    arr= []
+        dic[(x%kk)^r].append(x)
+    cnt=0
     for k,v in dic.items():
-        if dic[k]%2==1:
-            arr.append(k)
-        else:
-            continue
-    
-    arr.sort()
-    if len(arr)==1 or len(arr)==0:
-        print(0)
-        return
-    # print(xx+1, "...",arr)
-    arr2 = arr[:]
-    for i,x in enumerate(arr):
-        arr2[i] = arr[i]%kk
-    # print(arr2)
-    dic2 = defaultdict(list)
-    for i,ele in enumerate(arr2):
-        dic2[ele].append(arr[i])
-
-    # print(dic2)  
-
-    cnt=0  
-    
-    for k,v in dic2.items():
-        if len(v)%2:
+        if len(v)%2==1:
             cnt+=1
+    # print(dic)
     if cnt>=2:
         print(-1)
         return
-    ans =0
-    for k,v in dic2.items():
-        v.sort()
-        if len(v)%2:
-            dum=0
-            for i in range(1,len(v),2):
-                dum += (v[i+1]-v[i])//kk;
 
-
-            best= dum;
+    for k,v in dic.items():
+        v.sort();
+        if len(v)%2==1:
+            dum =0
+            for j in range(1,len(v),2):
+                dum += (v[j+1]-v[j])//kk
+            curmax =dum;
 
             for j in range(2,len(v),2):
-                dum -=(v[j] - v[j-1])//kk;
-                dum +=(v[j-1]-v[j-2])//kk;
-
-                best = min(dum,best)
-            ans +=best
+                dum -= (v[j]-v[j-1])//kk
+                dum +=  (v[j-1]-v[j-2])//kk;
+                curmax = min(curmax,dum)
+            ans += curmax
             
         else:
-            for i in range(0,len(v),2):
-                ans += (v[i+1]-v[i])//kk
+            for j in range(0,len(v),2):
+                ans += (v[j+1]-v[j])//kk;   
     print(ans)
+    
 
 
+    
+    
+
+    
     
         
             
             
 def main():
     for i in range(ii()):
-        solve(i)
+        solve()
                 
             
                 
