@@ -71,6 +71,12 @@
 
             
         }
+        void show(){
+            for(int i=0;i<seg.size();i++){
+                cout<<seg[i]<<" ";
+            }
+            cout<<endl;
+        }
         };
         
 
@@ -85,31 +91,34 @@
             // int seg[4*n];
             SGTree sg1(n);
             sg1.build(0,0,n-1,arr);
-            // cout<<seg[0]<<endl;
+            sg1.show();
+            int idx,val;
+            cin>>idx>>val;
+            sg1.update(0,0,n-1,idx,val);
+            sg1.show();
+            // int q;
+            // cin>>q;
 
-            int q;
-            cin>>q;
+            // while(q--){
+            //     // int l,r;
+            //     // cin>>l>>r;
+            //     // cout<<q<<" "<<query(0,0,n-1,l,r,seg)<<endl;
 
-            while(q--){
-                // int l,r;
-                // cin>>l>>r;
-                // cout<<q<<" "<<query(0,0,n-1,l,r,seg)<<endl;
-
-                int type;
-                cin>>type;
-                if (type==1){
-                    int l,r;
-                    cin>>l>>r;
-                    cout<<sg1.query(0,0,n-1,l,r)<<endl;
-                }
-                else{
-                    int i,val;
-                    cin>>i>>val;
-                    sg1.update(0,0,n-1,i,val);
-                    arr[i]=val;
-                }
+            //     int type;
+            //     cin>>type;
+            //     if (type==1){
+            //         int l,r;
+            //         cin>>l>>r;
+            //         cout<<sg1.query(0,0,n-1,l,r)<<endl;
+            //     }
+            //     else{
+            //         int i,val;
+            //         cin>>i>>val;
+            //         sg1.update(0,0,n-1,i,val);
+            //         arr[i]=val;
+            //     }
                 
-            }
+            // }
 
 
     
